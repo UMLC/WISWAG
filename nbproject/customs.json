@@ -1,0 +1,10 @@
+{
+    "attributes": {
+        "size": {
+            "context": "input"
+        }
+    },
+    "elements": {
+        "METHOD=\"LINK\"": {}
+    }
+}

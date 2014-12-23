@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>4DX Scoreboard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <form id="4DXScoreboard-form" action="4DXScoreboardinsert.php" method="post">
+    <body>
+    <p>4DX Discipline Two - Scoreboard</p>
+<!--Need to ask questions about the Responsibility for Scoreboard -->
+"sbresponsible" is responsible for the scoreboard.<br>
+The scoreboard due date is "sbcompleted".<br>
+Where is the Scoreboard located? <input type="text" name="sblocation"><br>
+Does the scoreboard meet the following criteria? <input type="radio" name="sbcriteria" value="yes"> Yes <input type="radio" name="sbcriteria" value="no"> No<br>
+Simple design<br>
+Clear if we are winning<br>
+Easily modified to reflect progress<br>
+Includes WIS / Progress / Time / Completion<br>
+Located in a highly visible place<br><br>
+Upload a picture of the scoreboard <br>
+  <input type="file" name="pic" accept="image/*"> <br>
+  <input type="submit">
+<br><br>
+If radio name "abcriteria" value is "no" AND "pic" is empty AND after date "sbcompleted" then send email to Cki, Martyn and "sbrperson"  
+<br>
+<input type="Submit" value="I'm Done!">
+    </body>
+    </form>
+</html>
