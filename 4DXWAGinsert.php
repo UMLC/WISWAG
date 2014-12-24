@@ -1,4 +1,4 @@
-<?
+<?php
 $servername = "localhost";
 $username = "UMLC_data";
 $password = "UMLC_data";
