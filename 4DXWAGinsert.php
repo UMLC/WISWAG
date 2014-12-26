@@ -1,4 +1,4 @@
-<?
+<?php
 $servername = "localhost";
 $username = "UMLC_data";
 $password = "UMLC_data";
@@ -18,12 +18,21 @@ $Frequency=mysql_real_escape_string($_POST['Frequency']);
 $Comment=mysql_real_escape_string($_POST['Comment']);
 
 //mysql_select_db("UMLC_data") or die(mysql_error()); IS THIS NEEDED SINCE ABOVE HAS ALREADY INCLUDED UMLCdatalogin.php ?
+//not needed because when we created the 'mysqli' object in UMLCdatalogin.php, we included the name of the database
  
 //echo "Connected to Database"."<BR>";
 
-$query = "INSERT INTO 4DX VALUES ('','$Name','$Class','$Complete','$Evidence','$Improve','$What','$When','$Location','$Frequency',$Comment')";
-mysql_query($query);
+//$query = "INSERT INTO 4DX VALUES ('','$Name','$Class','$Complete','$Evidence','$Improve','$What','$When','$Location','$Frequency',$Comment')";
+//mysql_query($query);
 //mysqli_query($query); SHOULD THIS QUERY WITH THE 'i' REPLACE THE ABOVE QUERY? 
-mysql_close();
+//mysql_close();
 //mysqli_close(); SHOULD THIS CLOSE WITH THE 'i' REPLACE THE ABOVE QUERY? 
+
+/*
+ALL DATABASE OPERATIONS ARE CARRIED OUT IN THIS MANOR:
+ * $DB->method
+ * EXAMPLES:
+ * $DB->query();
+ * $DB->close();
+*/
 ?>
