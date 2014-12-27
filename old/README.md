@@ -1,3 +1,3 @@
 WISWAG
 ======
-The WISWAG project is an introductory project involvingSQL, and PHP.
+The WISWAG project is an introductory project involving SQL, and PHP.
