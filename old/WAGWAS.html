@@ -22,15 +22,14 @@ Teacher Name: <input type="text" maxlength="20" name="Name"><br>
 Class Name: <input type="text" maxlength="10" name="Class"><br>
 <br>
 Last Week:<br>
-I completed my WAG: Yes!<input type="radio" name="WAGcomplete" value="Complete"> No<input type="radio" name="WAGcomplete" value="Incomplete" checked><br> 
+I completed my WAG: Yes!<input type="radio" name="Complete" value="Complete"> No<input type="radio" name="Complete" value="Incomplete" checked><br> 
 Evidence WAG leveraged WIS: <input type="text" maxlength="255" name="Evidence"><br>
 WAG could have been better: <input type=text maxlength="255" name="Improve"><br>
-I modified the scoreboard to reflect my progress: Yes!<input type="radio" name="sbprogress" value="Complete"> No<input type="radio" name="sbprogress" value="Incomplete" checked><br> 
-
+Did you modify the scoreboard to reflect your progress?
 <br>
 With ?X? weeks left to "?this needs to be specified goal?" I'm feeling ... <!-- I need to learn how to extract and manipulate data from mysql the ?X? would pull from mysql how many weeks remaining -->
 <!-- 2 POINTS 1) I'm only wanting this question to appear after weeks 3, 6 and 9 and 2) I see how to do drop-down here. Will the variable "Progress" hold the value of whatever choice is chosen? Instead of word description value would he be better to put a number value so the given values could calculate the teams feeling about reaching the goal. -->
-<select name="Emotion">
+<select name="Progress">
     <option value="surpass">we may surpass our goal</option>
     <option value="confident">confident we will make our goal</option>
     <option value="hopeful">behind, but hopeful we can reach our goal</option>
