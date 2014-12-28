@@ -7,14 +7,15 @@
     </head>
     <h2>4DX Independence and Responsibility Focus</h2>
     <h3>Determining the Baseline</h3>
-<?php
-function login(){
-if(!isset($_POST["name_en"])){
-?>
+
 <form method="post" action="baseline.php">
 Name:<input type='text' maxlength="25" name='name_en' placeholder='FirstEnglish FamilyPinyin'>
 <button type="submit">GO ></button>
 </form>
+<?php
+function login(){
+if(!isset($_POST["name_en"])){
+?>
 <?php
 }
 }
