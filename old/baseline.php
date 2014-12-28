@@ -123,8 +123,8 @@
             }
 // if the teacher is not in the DB
         } else {
-            echo "The name you entered does not appear in the database.";"\n"
-            echo "Try your name again, as an example Cki Lan, or Andy Fang";"\n"
+            echo "The name you entered does not appear in the database.";
+            echo "Try your name again, as an example Cki Lan, or Andy Fang";
             echo "If you still can't login, send Martyn a WeChat";
 
             login();
