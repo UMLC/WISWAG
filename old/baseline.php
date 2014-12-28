@@ -41,7 +41,7 @@
     function login() {
         ?>
         <form method="post" action="baseline.php">
-            Name:<input type='text' maxlength="20" name='teacher' placeholder='English Name'>
+            Name:<input type='text' maxlength="25" name='teacher' placeholder='FirstEnglish FamilyPinyin'>
             <button type="submit">GO ></button>
         </form>
         <?php
@@ -123,8 +123,10 @@
             }
 // if the teacher is not in the DB
         } else {
-            echo "The name you entered does not appear in the database.";
-            echo "Try your name again, as an example Cki Lan, or Andy Fang";
+            echo "The name you entered does not appear in the database.";"\n"
+            echo "Try your name again, as an example Cki Lan, or Andy Fang";"\n"
+            echo "If you still can't login, send Martyn a WeChat";
+
             login();
         }
     }
