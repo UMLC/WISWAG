@@ -1,18 +1,22 @@
+<?php include 'UMLCdatalogin.php'; ?>
+
 <?php
-$servername = "localhost";
-$username = "UMLC_data";
-$password = "UMLC_data";
-//are the above really needed since these all seem to be defined in the UMLCdatalogin.php file
-//MySQL Database Connect 
-include 'UMLCdatalogin.php';
+// create a variable
+$name_en=($_POST['name_en']);
 
-//$value = $_POST['name_en']; I think this is the same as the following line.
-
-$name_en = mysql_real_escape_string($_POST['name_en']);
+//$name_en = mysql_real_escape_string($_POST['name_en']);  this is the way Zeal does it
 //$name_zh=mysql_real_escape_string($_POST['name_zh']);
-$sql = "INSERT INTO Staff (name_en) Values ('$name_en')";
-if (!msql_query($sql)) {
-    die('die Error:' . mysql_error());
+//Execute the query
+
+mysqli_query($con,"INSERT INTO Staff (name_en) 
+VALUES ('name_en')");
+
+if(mysqli_affected_rows($con) > 0){
+ echo "<p>Employee Added</p>";
+ echo "<a href="Staffinfoform.html">Go Back</a>";
+} else {
+ echo "Staff Added<br />";
+ echo mysqli_error ($con);
 }
 
 //mysql_select_db("UMLC_data") or die(mysql_error()); IS THIS NEEDED SINCE ABOVE HAS ALREADY INCLUDED UMLCdatalogin.php ?
@@ -26,4 +30,3 @@ if (!msql_query($sql)) {
 //mysql_close();
 //mysqli_close(); SHOULD THIS CLOSE WITH THE 'i' REPLACE THE ABOVE QUERY? 
 mysql_close();
-?>

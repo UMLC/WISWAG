@@ -9,20 +9,20 @@
     <h3>Determining the Baseline</h3>
 <?php
 function login(){
-if(!isset($_POST["teacher"])){
+if(!isset($_POST["name_en"])){
 ?>
 <form method="post" action="baseline.php">
-Name:<input type='text' maxlength="20" name='teacher' placeholder='English Name'>
+Name:<input type='text' maxlength="25" name='name_en' placeholder='FirstEnglish FamilyPinyin'>
 <button type="submit">GO ></button>
 </form>
 <?php
 }
 }
 
-if(isset($_POST["teacher"])) {
+if(isset($_POST["name_en"])) {
     require_once "UMLCdatalogin.php";
-    $result = $DB->query("SELECT * FROM Teacher WHERE name = '" . $_POST["teacher"] . "'");
-    // SELECT * FROM Teacher WHERE name = 'andy'
+    $result = $DB->query("SELECT * FROM Staff WHERE name_en = '" . $_POST["name_en"] . "'");
+    // SELECT * FROM Staff WHERE name = 'andy'
     $result_array = $result->fetch_all();
     // if the teacher is in the DB
         if(count($result_array) > 0){
@@ -32,7 +32,7 @@ if(isset($_POST["teacher"])) {
         Click on the radio button to categorize the task:
         <ul>
             <li><b>Can't</b> = This task is inappropriate or not age appropriate.</li>
-            <li><b>Training</b> = With training children could learn to do this task.</li>
+            <li><b>Train</b> = With training children could learn to do this task.</li>
             <li><b>Able</b> = Children are able, but most often the teacher does it.</li>
             <li><b>Does</b> = Children most often do this task.</li>
         </ul>
@@ -42,11 +42,11 @@ if(isset($_POST["teacher"])) {
             // if set, insert task info into the DB
             $task = $DB->escape_string($_POST["task"]);
             $level = $DB->escape_string($_POST["level"]);
-            $DB->query("INSERT INTO tasks(teacher_id, task, level) VALUES('" . $_POST["teacher"] . "','" . $task . "','" . $level . "')");
+            $DB->query("INSERT INTO tasks(teacher_id, task, level) VALUES('" . $_POST["name_en"] . "','" . $task . "','" . $level . "')");
         }
         if($_POST["continue"] === "yes"){
         // check how many tasks are in the db
-        $result = $DB->query("SELECT * FROM tasks WHERE teacher_id = '" . $_POST["teacher"] . "' ORDER BY id DESC");
+        $result = $DB->query("SELECT * FROM tasks WHERE staff_id = '" . $_POST["name_en"] . "' ORDER BY id DESC");
         $result_array = $result->fetch_all();
         $number = $result->num_rows;
         // return the number + 1 in order to use as ID for this task
@@ -54,7 +54,7 @@ if(isset($_POST["teacher"])) {
         ?>
         <form method="post" action="baseline.php">
         Task <?php echo $task_id; ?>
-            <input type="hidden" name="teacher" value="<?php echo $_POST["teacher"]; ?>">
+            <input type="hidden" name="name_en" value="<?php echo $_POST["name_en"]; ?>">
             <input type="text" maxlength="100" size="100" name="task">
             <input type="radio" name="level" value="can't" /><b>Can't</b>
             <input type="radio" name="level" value="train" /><b>Training</b>
@@ -62,7 +62,7 @@ if(isset($_POST["teacher"])) {
             <input type="radio" name="level" value="does" /><b>Does</b>
             <select name="continue">
             <option value="yes">Continue</option>
-            <option value="no">Complete</option>
+            <option value="no">Completed</option>
             </select>
             <button type="submit">GO</button>
         </form>
