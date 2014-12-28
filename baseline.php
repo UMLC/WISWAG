@@ -79,7 +79,9 @@ foreach($result_array as $task){
 }
 // if the teacher is not in the DB
 } else {
-    echo "The name you entered does not appear in the database.";
+    echo "The name you entered is not in the database :(";<br> 
+    echo "Make sure to enter your English name, then space, then Chinese Family name using pinyin";<br>
+    echo "Here are a couple of examples, Cki Lan, or Andy Fang";
     login();
 }
 }
