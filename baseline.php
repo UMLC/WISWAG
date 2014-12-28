@@ -47,9 +47,9 @@
         <?php
     }
 
-    if (!isset($_POST["teacher"])) {
+    if (empty($_POST["teacher"])) {
         login();
-    } else if (isset($_POST["teacher"])) {
+    } else if (!empty($_POST["teacher"])) {
         require_once "UMLCdatalogin.php";
         $sql = "SELECT * FROM teacher WHERE name = '" . $_POST["teacher"] . "'";
         $result = $DB->query($sql);
@@ -59,12 +59,12 @@
         if (count($result_array) > 0) {
             $teacher_id = $result_array[0]["id"];
             // if deletetask is set
-            if(isset($_POST["deletetask"])){
+            if(!empty($_POST["deletetask"])){
             // delete given task
                 $DB->query("DELETE FROM tasks WHERE id='" . $_POST["deletetask"] . "'");
             }
             // if task info is set
-            if (isset($_POST["task"])) {
+            if (!empty($_POST["task"]) && !empty($_POST["level"])) {
                 // insert task info into the DB
                 $task = $DB->escape_string($_POST["task"]);
                 $level = $DB->escape_string($_POST["level"]);
@@ -77,7 +77,7 @@
             $number = $result->num_rows;
             // return the number + 1 in order to use as ID for this task
             $task_id = $number + 1;
-            if (!isset($_POST["continue"]) || $_POST["continue"] === "yes") {
+            if (empty($_POST["continue"]) || $_POST["continue"] === "yes") {
                 ?>
                 Think about each and every activity and situation that takes place with your class.<br><br>
                 Write a short description of the activity in the text-box.<br><br>
