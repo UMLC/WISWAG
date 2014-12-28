@@ -51,7 +51,8 @@
         login();
     } else if (isset($_POST["teacher"])) {
         require_once "UMLCdatalogin.php";
-        $result = $DB->query("SELECT * FROM Teacher WHERE name = '" . $_POST["teacher"] . "'");
+        $sql = "SELECT * FROM teacher WHERE name = '" . $_POST["teacher"] . "'";
+        $result = $DB->query($sql);
         // SELECT * FROM Teacher WHERE name = 'andy'
         $result_array = $result->fetch_all(MYSQLI_ASSOC);
         // if the teacher is in the DB
