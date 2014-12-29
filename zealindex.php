@@ -24,6 +24,6 @@ spl_autoload_register('autoload');
 // defined
 
 $db = new models\DB();
-$result = $db->query("SELECT * FROM Teacher");
+$result = $db->query("SELECT * FROM teacher");
 // var_dump will convert the contents of a variable to a readable string
 echo var_dump($result);

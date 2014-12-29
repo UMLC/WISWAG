@@ -18,7 +18,7 @@ class DB {
     private $user = "UMLC_data";
     private $pass = "UMLC_data";
     private $host = "localhost";
-    private $base = "UMLC_data";
+    private $base = "umlc_data";
     private $conn = false;
 
     // '__construct' is a 'magic' function because we don't have to run the function
@@ -28,7 +28,7 @@ class DB {
         // here we can access private variables because this code is inside the class.
         // inside a class, '$this' refers to the object that will be created from this
         // class
-        $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->base);
+        $this->conn = new \mysqli($this->host, $this->user, $this->pass, $this->base);
     }
 
     // now we'll include a function to run a query on the database so we can run
@@ -40,6 +40,7 @@ class DB {
         if ($result === false) {
             // let the user know the query failed, and show them the query
             echo "Query Failed: " . $sql;
+            return false;
             // query returns true if successful and no actual results are expected
             // this is the case with UPDATE
         } else if ($result === true) {
@@ -58,7 +59,7 @@ class DB {
             // this else will handle anything that was not handled above, in this case
             // it will handle the case where real results are returned by the query
             // like when we use SELECT
-            $results = $result->fetch_all();
+            $results = $result->fetch_all(MYSQLI_ASSOC);
             // fetch_all gets an array of all the rows and fields returned as a 
             // result of the query
             return $results;
