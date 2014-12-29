@@ -12,8 +12,10 @@ mysqli_query($con,"INSERT INTO Staff (name_en)
 VALUES ('name_en')");
 
 if(mysqli_affected_rows($con) > 0){
- echo "<p>Employee Added</p>";
- echo "<a href="Staffinfoform.html">Go Back</a>";
+    ?>
+<p>Employee Added</p>
+ <a href='Staffinfoform.html'>Go Back</a>
+     <?php
 } else {
  echo "Staff Added<br />";
  echo mysqli_error ($con);
