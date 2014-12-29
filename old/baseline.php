@@ -59,8 +59,8 @@
         if (count($result_array) > 0) {
             $teacher_id = $result_array[0]["id"];
             // if deletetask is set
-            if(isset($_POST["deletetask"])){
-            // delete given task
+            if (isset($_POST["deletetask"])) {
+                // delete given task
                 $DB->query("DELETE FROM tasks WHERE id='" . $_POST["deletetask"] . "'");
             }
             // if task info is set
@@ -123,10 +123,11 @@
             }
 // if the teacher is not in the DB
         } else {
-            echo "The name you entered does not appear in the database.";
-            echo "Try your name again, as an example Cki Lan, or Andy Fang";
-            echo "If you still can't login, send Martyn a WeChat";
-
+            ?>
+            <p>The name you entered does not appear in the database.</p>
+            <p>Try your name again, as an example Cki Lan, or Andy Fang</p>
+            <p>If you still can't login, send Martyn a WeChat</p>
+            <?php
             login();
         }
     }
