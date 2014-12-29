@@ -25,5 +25,5 @@ spl_autoload_register('autoload');
 
 $db = new models\DB();
 // here we will create a simple autoloader for controllers
-echo var_dump($_GET);
+echo var_dump($_SERVER["REQUEST_URI"]);
 unset($db);
