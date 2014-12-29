@@ -2,7 +2,7 @@
 
 <?php
 // create a variable
-$name_en=($_POST['name_en']);
+$name_en=$_POST['name_en'];
 
 //$name_en = mysql_real_escape_string($_POST['name_en']);  this is the way Zeal does it
 //$name_zh=mysql_real_escape_string($_POST['name_zh']);
@@ -30,3 +30,4 @@ if(mysqli_affected_rows($con) > 0){
 //mysql_close();
 //mysqli_close(); SHOULD THIS CLOSE WITH THE 'i' REPLACE THE ABOVE QUERY? 
 mysql_close();
+?>
