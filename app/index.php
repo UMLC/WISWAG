@@ -3,7 +3,7 @@
 // this function will automatically include the files for the classes we want to use
 // a class in a namespace looks like this
 // models\DB
-function autoload($class){
+function autoload($class) {
     // so we convert the class name to a filepath
     // by replacing backslashes with forward slashes
     // because on linux file paths use forward slashes
@@ -14,6 +14,7 @@ function autoload($class){
     // here we include the file in our script
     require_once $path;
 }
+
 // this tells PHP to use our function whenever it can't find the class we are
 // trying to use
 spl_autoload_register('autoload');
@@ -23,7 +24,15 @@ spl_autoload_register('autoload');
 // and PHP will use our function to automatically include the file where it is
 // defined
 
-$db = new models\DB();
 // here we will create a simple autoloader for controllers
-echo var_dump($_SERVER["REQUEST_URI"]);
+function request() {
+    $self = $_SERVER["PHP_SELF"];
+    $path = explode("/", $self);
+    array_pop($path);
+    $path = join("/", $path);
+    $request = str_replace($path, "", $_SERVER["REQUEST_URI"]);
+    return $request;
+}
+
+$db = new models\DB();
 unset($db);
