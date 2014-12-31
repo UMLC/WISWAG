@@ -10,57 +10,77 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    
-
-
+<!--I need to go through and determine which Table each $variable needs to be inserted into.-->    
 <h3>4DX Discipline One - Wildly Important Standard (WIS)</h3>
+<!-This WIS statement is the most general statement and applies to everyone. 
+I would like to have this statement appear on the top of the WAG form--->
 
 What is the simple, short, and general Wildly Important Standard?<br>
 <input type="text" maxlength="100" size="100" name="Statement"><br>
 <br>
+<!--This is only for informational purposes. There are no plans at this point for printing.-->
 Is there any explanation needed to better understand the WIS?<br>
 <input type="text" maxlength="255" size="100" name="Explanation"><br>
 <br>
+<!--These levels will need to correlate to 1 or more classes. It must have a number that can be extracted later.-->
 What is the short, and quantifiable WIS for each age level?<br>
 Level 1: <input type="text" maxlength="140" size="140" name="WISL1"> (youngest)<br>
 Level 2: <input type="text" maxlength="140" size="140" name="WISL2"><br>
 Level 3: <input type="text" maxlength="140" size="140" name="WISL3"><br>
 Level 4: <input type="text" maxlength="140" size="140" name="WISL4"> (oldest)<br>
-<!--ff. Is this something you 
+
+<!--Is the following href something you put here? Is it needed?--> 
 <a href="../models/DB.class.php"></a>
 
 <br>
+<!-- I'm thinking the following questions are not needed because we can extract number from the previous inputs
 What is the quantifiable measurement for each age level?<br>
 Level 1: <input type="number" min=1 max=99 size="2" name="StandardL1">(youngest)<br>
 Level 2: <input type="number" min=1 max=99 size="2" name="StandardL2"><br>
 Level 3: <input type="number" min=1 max=99 size="2" name="StandardL3"><br>
 Level 4: <input type="number" min=1 max=99 size="2" name="StandardL4">(oldest)<br>
-
+-->
 <h3>4DX Discipline Two - Scoreboard</h3>
-<!--Need a link for 4DXScoreboard.html -->
+
+<!--A variable inserted in Table scoreboard. It will be selected and inserted into that persons WAG form-->
 Who is responsible for the scoreboard? <input type="text" name="sbrperson"><br>
+
+<!--This $sbcompleted variable will be inserted in Table scoreboard. Due date would also come up on
+$sbrperson WAG form with a radio button choice of incomplete / complete until it is complete. 
+If not complete at due date I would really like an Email sent to me.-->
 When will the scoreboard be completed? <input type="date" placeholder="YYYY-MM-DD" size="10" name="sbcompleted"><br>
-<METHOD="LINK" ACTION="http://umlc.org/4DX/Scoreboard.html">
+
+<!--Not sure if this code is right or not - just want an easy way to go to the scoreboard page if necessary.-->
+<METHOD="LINK" ACTION="http://umlc.org/data/Scoreboard.html">
     <INPUT TYPE="submit" VALUE="Link to Scoreboard form">
-<h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
-<!--Need to ask questions about the workability of the WAG Form -->
+
+    <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
+
+<!--This is more of a reminder Not sure what table to insert $WAGready-->
 Is the Weekly Action Goal Form ready?<input type="radio" name="WAGready" value="yes"> Yes <input type="radio" name="WAGready" value="no"> No<br>
-<METHOD="LINK" ACTION="http://umlc.org/4DX/WAG.html">
+
+<!--This is just a link to go look at the WAGWAS page if needed.-->
+<METHOD="LINK" ACTION="http://umlc.org/data/WAGWAS.html">
     <INPUT TYPE="submit" VALUE="Link to WAG form"><br><br>
+    
 <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
 
+<!---->
 What is the Monday of the week WAGs will start? 
+
 <input type="date" placeholder="YYYY-MM-DD" size="10" name="Start"><br><br>
 Looking ahead the next 12-16 weeks, are there any weeks 4DX will not be executed?<br>
 If yes, write the Monday date(s) in the following blanks.
+<!---->
 <input type="date" placeholder="YYYY-MM-DD" size="10" name="skip1"> <input type="date" placeholder="YYYY-MM-DD" size="10" name="skip2"> <input type="date" placeholder="YYYY-MM-DD" size="10" name="skip3">  
 <!--if there are 2 or even 3 weeks, how are these variables input into mysql? -->
 <br><br>
-
+<!---->
 Describe the summative assessment process.<br>
 <textarea maxlength="300" name="Summative" rows="3" cols="100">
 Enter evaluation process here...
 </textarea><br><br>
+<!---->
 Is there any other information that would be good to capture at this time that might be important for understanding, developing or evaluating this WIS?<br> 
 <textarea maxlength="300" name="Notes" rows="3" cols="100">
 Enter your information here...
