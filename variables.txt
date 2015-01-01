@@ -12,7 +12,7 @@ These are from 4DXsetup.html
 <!--insert $WAGready in table WIS (radio)--> 	** Not sure what type of field radio buttons use
 						** Also not clear how the value of radio buttons work.
 <!--insert $start in table WIS (date)-->, 
-<!--insert $skip1 in table WIS (date)--> ** Is each skip week a seperate field?
+<!--insert $skip1 in table WIS (date)--> ** Is each skip week a separate field?
 <!--insert $skip2 in table WIS (date)-->
 <!--insert $skip3 in table WIS (date)-->
 <!--insert $summative in table WIS (textarea 300)-->
