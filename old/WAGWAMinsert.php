@@ -7,15 +7,22 @@ $password = "UMLC_data";
 //MySQL Database Connect 
 include 'UMLCdatalogin.php';
 
-$Name=mysql_real_escape_string($_POST['Name']);
-$Class=mysql_real_escape_string($_POST['Class']);
-$Complete=mysql_real_escape_string($_POST['Complete']);
-$Positive=mysql_real_escape_string($_POST['Evidence']);
-$Improve=mysql_real_escape_string($_POST['Improve']);
-$What=mysql_real_escape_string($_POST['What']);
-$When=mysql_real_escape_string($_POST['When']);
-$Location=mysql_real_escape_string($_POST['Location']);
-$Frequency=mysql_real_escape_string($_POST['Frequency']);
+$name=mysql_real_escape_string($_POST['name']);
+$class=mysql_real_escape_string($_POST['class']);
+$complete=mysql_real_escape_string($_POST['complete']);
+$evidence=mysql_real_escape_string($_POST['evidence']);
+$improve=mysql_real_escape_string($_POST['improve']);
+$modify=mysql_real_escape_string($_POST['modify']);
+//question on the following concerning coding
+//following only appears at weeks 3,6,9.
+$emotion=mysql_real_escape_string($_POST['emotion']);
+//following only appears in week 12
+$met=mysql_real_escape_string($_POST['met']);
+$what=mysql_real_escape_string($_POST['what']);
+$when=mysql_real_escape_string($_POST['when']);
+$location=mysql_real_escape_string($_POST['location']);
+//$times = $perday*perweek
+$times=mysql_real_escape_string($_POST['times']);
 $Comment=mysql_real_escape_string($_POST['Comment']);
 
 //mysql_select_db("UMLC_data") or die(mysql_error()); IS THIS NEEDED SINCE ABOVE HAS ALREADY INCLUDED UMLCdatalogin.php ?
