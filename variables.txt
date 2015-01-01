@@ -1,0 +1,45 @@
+These are from 4DXsetup.html
+
+<!--insert $statement in table WIS (text 100)-->
+<!--insert $explanation into table WIS (textarea 255)-->
+<!--insert $WISL1 into table WIS (text 255)--> ** Are each of these WISL# variables a different field in the WIS Table? 
+<!--insert $WISL2 into table WIS (text 255)-->
+<!--insert $WISL3 into table WIS (text 255)-->
+<!--insert $WISL4 into table WIS (text 255)-->
+
+<!--insert $sbrperson in table WIS (text 20) --> 
+<!--insert $sbcompleted in Table WIS (date) --> 
+<!--insert $WAGready in table WIS (radio)--> 	** Not sure what type of field radio buttons use
+						** Also not clear how the value of radio buttons work.
+<!--insert $start in table WIS (date)-->, 
+<!--insert $skip1 in table WIS (date)--> ** Is each skip week a seperate field?
+<!--insert $skip2 in table WIS (date)-->
+<!--insert $skip3 in table WIS (date)-->
+<!--insert $summative in table WIS (textarea 300)-->
+<!--insert $notes in Table WIS (textarea 300)-->
+
+These are from WAGWAM.html
+<!--insert $name INTO Table Teacher?? (text 20)--> ** should this be a part of login to the WAGWAM page?
+<!--insert $class INTO Table ?? (text 10)--> 	** should this also be a part of login to the WAGWAM page?
+						** if the above $variables go into Table teacher, how will it
+							  correspond to the rest of a teacher's WAGWAM info?
+<!--insert $complete INTO Table WAGWAM (Radio)-->
+<!--insert $evidence INTO Table WAGWAM (text 20)-->
+<!--insert $improve INTO Table WAGWAM (text 20)-->
+<!--insert $modify INTO Table WAGWAM (Radio)-->
+<!--insert $emotion INTO Table WAGWAM (select option)-->	**There are 4 options for this, and I'm thinking each option would be a variable. 
+								I think they all go into the field. Should that field type be varchar with a value of 10?
+		"surpass" (selection of $emotion)
+		"confident"  (selection of $emotion)
+		"hopeful"  (selection of $emotion)
+		"doubtful"  (selection of $emotion)
+
+<!--insert $met INTO Table WAGWAM (Radio)-->
+
+<!--insert $what INTO Table WAGWAM (text 160)-->
+<!--insert $when INTO Table WAGWAM (text 160)-->
+<!--insert $location INTO Table WAGWAM (text 160)-->
+<!--insert $perday INTO Table WAGWAM (number 01-99)--> **perday*days = $times (multiplied before or after insertion?)
+<!--insert $days INTO Table WAGWAM (number 01-06)-->
+<!-- perday*perweek becomes $times (The PerDay and Perweek are not important)-->
+<!--insert $comment INTO Table WAGWAM (text 200)-->
