@@ -15,8 +15,8 @@ class DB {
     // we won't have access to the private variables in the class's resulting object
     // $db = new DB(); echo $db->user;
     // would return an error because 'user' is a private variable
-    private $user = "UMLC_data";
-    private $pass = "UMLC_data";
+    private $user = "zeal";
+    private $pass = "Zboys541019!";
     private $host = "localhost";
     private $base = "umlc_data";
     private $conn = false;
@@ -59,10 +59,16 @@ class DB {
             // this else will handle anything that was not handled above, in this case
             // it will handle the case where real results are returned by the query
             // like when we use SELECT
-            $results = $result->fetch_all(MYSQLI_ASSOC);
-            // fetch_all gets an array of all the rows and fields returned as a 
-            // result of the query
-            return $results;
+            
+            // make array to hold results
+            $res = [];
+            // make a counting look to go through each result row
+            for ($i = 0; $result->data_seek($i); $i++){
+                // get an array of the fields/values in the result row, and put it in the overall result array
+                $res[] = $result->fetch_assoc();
+            }
+            // return the whole array of rows, (each row is an array of fields/values)
+            return $res;
         }
         // if none of these cases were triggered, something went wrong
         return false;
