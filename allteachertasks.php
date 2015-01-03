@@ -1,7 +1,7 @@
 <pre>
 <?php
 
-require_once 'UMLCdatalogin';
+require_once 'UMLCdatalogin.php';
 
 $sql = "SELECT * FROM tasks JOIN teacher ON(tasks.teacher_id = teacher.id) ORDER BY teacher.name, tasks.level ASC";
 
