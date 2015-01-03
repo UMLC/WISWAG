@@ -27,12 +27,30 @@ spl_autoload_register('autoload');
 // here we will create a simple autoloader for controllers
 function request() {
     $self = $_SERVER["PHP_SELF"];
-    $path = explode("/", $self);
-    array_pop($path);
-    $path = join("/", $path);
-    $request = str_replace($path, "", $_SERVER["REQUEST_URI"]);
+    $curr_path = preg_replace("/[^\/]+$/", "", $self);
+    $request_relative = str_replace($curr_path, "", $_SERVER["REQUEST_URI"]);
+    $request = preg_replace("/\/$/", "", $request_relative);
     return $request;
 }
 
+require_once 'controllers/index.php';
+
+function load_controller($req){
+    global $controllers;
+    $key = array_search($req, $controllers);
+    if($key){
+        require_once "controllers/" . $key . ".ctrl.php";
+    } else {
+        require_once "controllers/404.ctrl.php";
+    }
+}
+
+function template($tmp){
+    require_once "views/" . $tmp . ".tmp.php";
+}
+
 $db = new models\DB();
+
+load_controller(request());
+
 unset($db);
