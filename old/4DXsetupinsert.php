@@ -23,13 +23,14 @@ $skip=mysql_real_escape_string($_POST['skip']);
 $summative=mysql_real_escape_string($_POST['summative']);
 $notes=mysql_real_escape_string($_POST['notes']);
 
-//$query = "INSERT INTO ??4DX/wis?? VALUES ('','$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', 'skip', 'summative','notes')";
-//mysql_query($query);
-//mysqli_query($query); SHOULD THIS QUERY WITH THE 'i' REPLACE THE ABOVE QUERY? 
-//mysql_close();
-//mysqli_close(); SHOULD THIS CLOSE WITH THE 'i' REPLACE THE ABOVE QUERY? 
+$query = "INSERT INTO wis ('', statement, explanation, wisl1, wisl2, wisl3, wisl4, sbrperson, sbcompleted, WAGready, start, skip, summative, notes) "
+        . "VALUES ('','$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
+mysql_query($query);
+
+mysql_close();
 
 /*
+ * I'M NOT CERTAIN IF I NEED TO PUT $DB-> IN THE ABOVE SCRIPT
 ALL DATABASE OPERATIONS ARE CARRIED OUT IN THIS MANOR:
  * $DB->method
  * EXAMPLES:
