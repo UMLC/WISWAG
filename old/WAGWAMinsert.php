@@ -17,7 +17,10 @@ $modify=mysql_real_escape_string($_POST['modify']);
 $what=mysql_real_escape_string($_POST['what']);
 $when=mysql_real_escape_string($_POST['when']);
 $location=mysql_real_escape_string($_POST['location']);
-//$times = $perday*perweek
+$perday=mysql_real_escape_string($_POST['perday']);
+$perweek=mysql_real_escape_string($_POST['perweek']);
+$times = $perday*$perweek;
+//is a post what comes from the html? Should there be a "times" Post here?
 $times=mysql_real_escape_string($_POST['times']);
 $comment=mysql_real_escape_string($_POST['comment']);
 
@@ -27,12 +30,8 @@ $emotion=mysql_real_escape_string($_POST['emotion']);
 //following only appears in week 12
 $met=mysql_real_escape_string($_POST['met']);
 
-//mysql_select_db("UMLC_data") or die(mysql_error()); IS THIS NEEDED SINCE ABOVE HAS ALREADY INCLUDED UMLCdatalogin.php ?
-//not needed because when we created the 'mysqli' object in UMLCdatalogin.php, we included the name of the database
- 
-//echo "Connected to Database"."<BR>";
 
-//$query = "INSERT INTO 4DX VALUES ('','$Name','$Class','$Complete','$Evidence','$Improve','$What','$When','$Location','$Frequency',$Comment')";
+//$query = "INSERT INTO ??4DX?? VALUES ('','$name','$class','$complete','$evidence','$improve','$what','$when','$location','$times',$comment')";
 //mysql_query($query);
 //mysqli_query($query); SHOULD THIS QUERY WITH THE 'i' REPLACE THE ABOVE QUERY? 
 //mysql_close();
