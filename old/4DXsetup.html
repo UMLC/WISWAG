@@ -28,10 +28,10 @@ Is there any explanation needed to better understand the WIS?<br>
 <!--insert $WISL2 into table WIS (text 255)-->
 <!--insert $WISL3 into table WIS (text 255)-->
 <!--insert $WISL4 into table WIS (text 255)-->
-What is the short, and quantifiable WIS for each age level?<br>
-Level 1: <input type="text" maxlength="140" size="140" name="WISL1"> (youngest)<br>
-Level 2: <input type="text" maxlength="140" size="140" name="WISL2"><br>
-Level 3: <input type="text" maxlength="140" size="140" name="WISL3"><br>
+What is the short, and quantifiable WIS for each age level? (must include a number)<br>
+Level 1: <input type="text" maxlength="140" size="140" name="WISL1"> (youngest)<br><br>
+Level 2: <input type="text" maxlength="140" size="140" name="WISL2"><br><br>
+Level 3: <input type="text" maxlength="140" size="140" name="WISL3"><br><br>
 Level 4: <input type="text" maxlength="140" size="140" name="WISL4"> (oldest)<br>
 
 <!--Is the following href something Zeal put here? Is it needed?--> 
@@ -57,29 +57,30 @@ If not complete at due date I would really like an Email sent to me.-->
 When will the scoreboard be completed? <input type="date" placeholder="YYYY-MM-DD" size="10" name="sbcompleted"><br>
 
 <!--Not sure if this code is right or not - just want an easy way to go to the scoreboard page if necessary.-->
-<METHOD="LINK" ACTION="http://umlc.org/data/Scoreboard.html">
-    <INPUT TYPE="submit" VALUE="Link to Scoreboard form">
-
+<FORM METHOD="LINK" ACTION="scoreboard.htm">
+<INPUT TYPE="submit" VALUE="Link to Scoreboard Form">
+</FORM>
     <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
 <!--insert $WAGready in table WIS (radio)-->
 Is the Weekly Action Goal Form ready?<input type="radio" name="WAGready" value="yes"> Yes <input type="radio" name="WAGready" value="no"> No<br>
 
 <!--This is just a link to go look at the WAGWAS page if needed.-->
-<METHOD="LINK" ACTION="http://umlc.org/data/WAGWAS.html">
-    <INPUT TYPE="submit" VALUE="Link to WAG form"><br><br>
+<FORM METHOD="LINK" ACTION="WAGWAM.htm">
+<INPUT TYPE="submit" VALUE="Link to WAG Form">
+</FORM>
     
 <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
 
 <!--insert $start in table WIS (date)-->
 What is the Monday of the week WAGs will start? 
-<input type="date" placeholder="YYYY-MM-DD" size="10" name="start"><br><br>
+<input type="text" placeholder="YYYY-MM-DD" size="10" name="start"><br><br>
 Looking ahead the next 12-16 weeks, are there any weeks 4DX will not be executed?<br>
-If yes, write the Monday date(s) in the following blanks.
+If yes, write the Monday date(s) in the following blanks.<br>
 <!--insert $skip1 in table WIS (date)-->
 <!--insert $skip2 in table WIS (date)-->
 <!--insert $skip3 in table WIS (date)-->
-<input type="date" placeholder="YYYY-MM-DD" size="10" name="skip1"> <input type="date" placeholder="YYYY-MM-DD" size="10" name="skip2"> <input type="date" placeholder="YYYY-MM-DD" size="10" name="skip3">  
+<input type="date" placeholder="YYYY-MM-DD, YYYY-MM-DD, YYYY-MM-DD" size="100" name="skip">
 <!--if there are 2 or even 3 weeks, how are these variables input into mysql? -->
 <br><br>
 <!--insert $summative in table WIS (textarea 300)-->

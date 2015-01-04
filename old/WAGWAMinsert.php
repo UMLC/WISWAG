@@ -15,7 +15,7 @@ $improve=mysql_real_escape_string($_POST['improve']);
 $modify=mysql_real_escape_string($_POST['modify']);
 
 $what=mysql_real_escape_string($_POST['what']);
-$when=mysql_real_escape_string($_POST['when']);
+$during=mysql_real_escape_string($_POST['during']);
 $location=mysql_real_escape_string($_POST['location']);
 $perday=mysql_real_escape_string($_POST['perday']);
 $perweek=mysql_real_escape_string($_POST['perweek']);
@@ -29,6 +29,8 @@ $comment=mysql_real_escape_string($_POST['comment']);
 $emotion=mysql_real_escape_string($_POST['emotion']);
 //following only appears in week 12
 $met=mysql_real_escape_string($_POST['met']);
+
+
 
 
 //$query = "INSERT INTO ??4DX?? VALUES ('','$name','$class','$complete','$evidence','$improve','$what','$when','$location','$times',$comment')";
