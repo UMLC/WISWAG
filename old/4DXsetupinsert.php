@@ -28,6 +28,7 @@ $wisl1=$_POST['wisl1'];
 $wisl2=$_POST['wisl2'];
 $wisl3=$_POST['wisl3'];
 $wisl4=$_POST['wisl4'];
+$length=$_POST['length'];
 
 $sbrperson=$_POST['sbrperson'];
 $sbcompleted=$_POST['sbcompleted'];
@@ -38,8 +39,8 @@ $skip=$_POST['skip'];
 $summative=$_POST['summative'];
 $notes=$_POST['notes'];
 
-$query = "INSERT INTO wis (statement, explanation, wisl1, wisl2, wisl3, wisl4, sbrperson, sbcompleted, WAGready, start, skip, summative, notes)
-      VALUES ('$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
+$query = "INSERT INTO wis (statement, explanation, wisl1, wisl2, wisl3, wisl4, length, sbrperson, sbcompleted, WAGready, start, skip, summative, notes)
+      VALUES ('$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$length','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
 $DB->query($query);
 
 $DB->close();

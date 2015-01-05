@@ -34,45 +34,32 @@ What is the simple, short, and general Wildly Important Standard?<br>
 Is there any explanation needed to better understand the WIS?<br>
 <input type="textarea" maxlength="255" size="100" name="explanation"><br>
 <br>
-<!--These levels will need to correlate to 1 or more classes. It must have a number that can be extracted later.-->
-<!--insert $WISL1 into table WIS (text 255)-->
-<!--insert $WISL2 into table WIS (text 255)-->
-<!--insert $WISL3 into table WIS (text 255)-->
-<!--insert $WISL4 into table WIS (text 255)-->
+
 What is the short, and quantifiable WIS for each age level? (must include a number)<br>
 Level 1: <input type="text" maxlength="140" size="140" name="WISL1"> (youngest)<br><br>
 Level 2: <input type="text" maxlength="140" size="140" name="WISL2"><br><br>
 Level 3: <input type="text" maxlength="140" size="140" name="WISL3"><br><br>
-Level 4: <input type="text" maxlength="140" size="140" name="WISL4"> (oldest)<br>
+Level 4: <input type="text" maxlength="140" size="140" name="WISL4"> (oldest)<br><br>
 
+This WIS focus will last <input type="number" maxlength="2" size="3" name="length"> weeks.
 <br>
-<!-- I'm thinking the following questions are not needed because we can extract number from the previous inputs
-What is the quantifiable measurement for each age level?<br>
-Level 1: <input type="number" min=1 max=99 size="2" name="StandardL1">(youngest)<br>
-Level 2: <input type="number" min=1 max=99 size="2" name="StandardL2"><br>
-Level 3: <input type="number" min=1 max=99 size="2" name="StandardL3"><br>
-Level 4: <input type="number" min=1 max=99 size="2" name="StandardL4">(oldest)<br>
--->
 <h3>4DX Discipline Two - Scoreboard</h3>
 
-<!--insert $sbrperson in table scoreboard (text 20)
+<!--insert $sbrperson in table wis (text 20)
 $sbrperson will be selected and inserted into responsible person's WAG form-->
 Who is responsible for the scoreboard? <input type="text" name="sbrperson"><br>
 
-<!--insert $sbcompleted in Table scoreboard (date) Due date would also come up in responsible person's WAG form
+<!--insert $sbcompleted in Table wis (date) Due date would also come up in responsible person's WAG form
 $sbrperson WAG form with a radio button choice of incomplete / complete until it is complete. 
 If not complete at due date I would really like an Email sent to me.-->
 When will the scoreboard be completed? <input type="date" placeholder="YYYY-MM-DD" size="10" name="sbcompleted"><br>
 
-<!--Not sure if this code is right or not - just want an easy way to go to the scoreboard page if necessary.-->
 <a href="scoreboard.htm"><button>Link to Scoreboard</button></a>
 
     <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
-<!--insert $WAGready in table WIS (radio)-->
 Is the Weekly Action Goal Form ready?<input type="radio" name="WAGready" value="yes"> Yes <input type="radio" name="WAGready" value="no"> No<br>
 
-<!--This is just a link to go look at the WAGWAS page if needed.-->
 <a href="WAGWAM.html"><button>Link to WAG Form</button></a>
     
 <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
@@ -82,11 +69,8 @@ What is the Monday of the week WAGs will start?
 <input type="text" placeholder="YYYY-MM-DD" size="10" name="start"><br><br>
 Looking ahead the next 12-16 weeks, are there any weeks 4DX will not be executed?<br>
 If yes, write the Monday date(s) in the following blanks.<br>
-<!--insert $skip1 in table WIS (date)-->
-<!--insert $skip2 in table WIS (date)-->
-<!--insert $skip3 in table WIS (date)-->
+
 <input type="date" placeholder="YYYY-MM-DD, YYYY-MM-DD, YYYY-MM-DD" size="100" name="skip">
-<!--if there are 2 or even 3 weeks, how are these variables input into mysql? -->
 <br><br>
 <!--insert $summative in table WIS (textarea 300)-->
 Describe the summative assessment process.<br>
