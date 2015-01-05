@@ -10,6 +10,14 @@ $password = "UMLC_data";
 require_once "../UMLCdatalogin.php";
 
 //we can use a foreach loop to escape_string all the post variables
+
+$assoc_array = [
+    "aname" => "a value",
+    "nametwo" => "value two"
+];
+
+echo $assoc_array["aname"]; // echoes 'a value'
+
 foreach($_POST as $variable_name => $value){
     $_POST[$variable_name] = $DB->escape_string($value);
 }
