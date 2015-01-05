@@ -16,6 +16,7 @@ and open the template in the editor.
 <!--I would like to have this statement appear on the top of the WAGWAM form-->
 <!--insert $statement in table WIS (text 100)-->
 What is the simple, short, and general Wildly Important Standard?<br>
+<form method="post" action="4DXsetupinsert.php">
 <input type="text" maxlength="100" size="100" name="statement"><br>
 <br>
 <!--This is only for informational purposes. There are no plans at this point for printing.-->
@@ -54,18 +55,15 @@ If not complete at due date I would really like an Email sent to me.-->
 When will the scoreboard be completed? <input type="date" placeholder="YYYY-MM-DD" size="10" name="sbcompleted"><br>
 
 <!--Not sure if this code is right or not - just want an easy way to go to the scoreboard page if necessary.-->
-<FORM METHOD="LINK" ACTION="scoreboard.htm">
-<INPUT TYPE="submit" VALUE="Link to Scoreboard Form">
-</FORM>
+<a href="scoreboard.htm"><button>Link to Scoreboard</button></a>
+
     <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
 <!--insert $WAGready in table WIS (radio)-->
 Is the Weekly Action Goal Form ready?<input type="radio" name="WAGready" value="yes"> Yes <input type="radio" name="WAGready" value="no"> No<br>
 
 <!--This is just a link to go look at the WAGWAS page if needed.-->
-<FORM METHOD="LINK" ACTION="WAGWAM.htm">
-<INPUT TYPE="submit" VALUE="Link to WAG Form">
-</FORM>
+<a href="WAGWAM.html"><button>Link to WAG Form</button></a>
     
 <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
 
@@ -92,4 +90,4 @@ Enter your information here...
 </textarea>
 <br><br>
 <input type="Submit" value="I'm Done!">
-
+</form>
