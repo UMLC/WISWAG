@@ -23,9 +23,9 @@ $skip=mysql_real_escape_string($_POST['skip']);
 $summative=mysql_real_escape_string($_POST['summative']);
 $notes=mysql_real_escape_string($_POST['notes']);
 
-$query = "INSERT INTO wis ('', statement, explanation, wisl1, wisl2, wisl3, wisl4, sbrperson, sbcompleted, WAGready, start, skip, summative, notes) "
-        . "VALUES ('','$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
-mysql_query($query);
+$query = "INSERT INTO wis (statement, explanation, wisl1, wisl2, wisl3, wisl4, sbrperson, sbcompleted, WAGready, start, skip, summative, notes)
+      VALUES ($statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
+$DB->query($query);
 
 mysql_close();
 
