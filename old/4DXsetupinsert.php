@@ -4,30 +4,37 @@ $servername = "localhost";
 $username = "UMLC_data";
 $password = "UMLC_data";
 
-//MySQL Database Connect 
-include 'UMLCdatalogin.php';
+//MySQL Database Connect
 
-$statement=mysql_real_escape_string($_POST['statement']);
-$explanation=mysql_real_escape_string($_POST['explanation']);
-$wisl1=mysql_real_escape_string($_POST['wisl1']);
-$wisl2=mysql_real_escape_string($_POST['wisl2']);
-$wisl3=mysql_real_escape_string($_POST['wisl3']);
-$wisl4=mysql_real_escape_string($_POST['wisl4']);
+// the file you want is in this folder's parent folder: ../
+require_once "../UMLCdatalogin.php";
 
-$sbrperson=mysql_real_escape_string($_POST['sbrperson']);
-$sbcompleted=mysql_real_escape_string($_POST['sbcompleted']);
-$WAGready=mysql_real_escape_string($_POST['WAGready']);
+//we can use a foreach loop to escape_string all the post variables
+foreach($_POST as $variable_name => $value){
+    $_POST[$variable_name] = $DB->escape_string($value);
+}
 
-$start=mysql_real_escape_string($_POST['start']);
-$skip=mysql_real_escape_string($_POST['skip']);
-$summative=mysql_real_escape_string($_POST['summative']);
-$notes=mysql_real_escape_string($_POST['notes']);
+$statement=$_POST['statement'];
+$explanation=$_POST['explanation'];
+$wisl1=$_POST['wisl1'];
+$wisl2=$_POST['wisl2'];
+$wisl3=$_POST['wisl3'];
+$wisl4=$_POST['wisl4'];
+
+$sbrperson=$_POST['sbrperson'];
+$sbcompleted=$_POST['sbcompleted'];
+$WAGready=$_POST['WAGready'];
+
+$start=$_POST['start'];
+$skip=$_POST['skip'];
+$summative=$_POST['summative'];
+$notes=$_POST['notes'];
 
 $query = "INSERT INTO wis (statement, explanation, wisl1, wisl2, wisl3, wisl4, sbrperson, sbcompleted, WAGready, start, skip, summative, notes)
-      VALUES ($statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
+      VALUES ('$statement','$explanation','$wisl1','$wisl2','$wisl3','$wisl4','$sbrperson','$sbcompleted','$WAGready',$start', '$skip', '$summative','$notes')";
 $DB->query($query);
 
-mysql_close();
+$DB->close();
 
 /*
  * I'M NOT CERTAIN IF I NEED TO PUT $DB-> IN THE ABOVE SCRIPT
