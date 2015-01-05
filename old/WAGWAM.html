@@ -25,15 +25,16 @@ Class Name: <input type="text" maxlength="10" name="class"><br>
 <br>
 Last Week:<br>
 <!--insert $complete INTO Table WAGWAM (Radio)-->
-Did you completed your WAG? Yes!<input type="radio" name="complete" value="complete"> No<input type="radio" name="complete" value="incomplete" checked><br> 
+Did you complete your WAG? Yes!<input type="radio" name="complete" value="complete"> No<input type="radio" name="complete" value="incomplete" checked><br> 
 <!--insert $evidence INTO Table WAGWAM (text 20)-->
-Evidence WAG leveraged WIS: <input type="text" maxlength="255" name="evidence"><br>
+Give Evidence that WAG leveraged WIS: <input type="text" maxlength="255" name="evidence"><br>
 <!--insert $improve INTO Table WAGWAM (text 20)-->
-WAG could have been better: <input type=text maxlength="255" name="improve"><br>
+How could WAG have been better? <input type=text maxlength="255" name="improve"><br>
 <!--insert $modify INTO Table WAGWAM (Radio)-->
 Did you modify the scoreboard to reflect your progress? Yes!<input type="radio" name="modify" value="modify"> No<input type="radio" name="modify" value="unmodified" checked><br>
 <br>
-With ?X? weeks left to "?this needs to be specified goal?" I'm feeling ... <!-- I need to learn how to extract and manipulate data from mysql the ?X? would pull from mysql how many weeks remaining -->
+With ?X? weeks left to "?this needs to be specified goal?" I'm feeling ... <br>
+<!-- I need to learn how to extract and manipulate data from mysql the ?X? would pull from mysql how many weeks remaining -->
 <!-- 2 POINTS 1) I'm only wanting this question to appear after weeks 3, 6 and 9 and 2) I see how to do drop-down here. Will the variable "Progress" hold the value of whatever choice is chosen? Instead of word description value would he be better to put a number value so the given values could calculate the teams feeling about reaching the goal. -->
 <!--insert $emotion INTO Table WAGWAM (select option)-->
 <select name="emotion">
