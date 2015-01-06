@@ -19,19 +19,19 @@ Week __ of __ weeks <br>
 <!--HOW WOULD THIS WORK? DO I PULL THIS INFORMATION FROM THE DATABASE, OR IS THIS SOMETHING I SET IN PHP OR HTML 5 WITH THE DATE? I WOULD LIKE TO HAVE FORM I COULD FILL OUT FOR EACH 4DX FOCUS WE DO. IT WOULD ASK QUESTIONS LIKE: WHAT IS THE FOCUS? WHAT IS THE WIS? WHEN IS THE STARTING DATE? WHEN IS THE ENDING DATE? HOW MANY WEEKS WILL THE FOCUS LAST? ARE THERE ANY VACATION WEEKS? IDEA IS TO HAVE 4DXWAG, 4DXWIS, 4DXAdmin-->
 <br>
 <!--insert $name INTO Table Teacher (text 20)-->
-Teacher Name: <input type="text" maxlength="20" name="name"><br>
+Teacher Name: <input type="text" maxlength="20" name="name"><br><br>
 <!--insert $class INTO Table class (text 10)-->
 Class Name: <input type="text" maxlength="10" name="class"><br>
 <br>
 Last Week:<br>
 <!--insert $complete INTO Table WAGWAM (Radio)-->
-Did you complete your WAG? Yes!<input type="radio" name="complete" value="complete"> No<input type="radio" name="complete" value="incomplete" checked><br> 
+Did you complete your WAG? Yes!<input type="radio" name="complete" value="complete"> No<input type="radio" name="complete" value="incomplete" checked><br><br>
 <!--insert $evidence INTO Table WAGWAM (text 20)-->
 Give Evidence that WAG leveraged WIS: <input type="text" maxlength="255" name="evidence"><br>
 <!--insert $improve INTO Table WAGWAM (text 20)-->
 How could WAG have been better? <input type=text maxlength="255" name="improve"><br>
 <!--insert $modify INTO Table WAGWAM (Radio)-->
-Did you modify the scoreboard to reflect your progress? Yes!<input type="radio" name="modify" value="modify"> No<input type="radio" name="modify" value="unmodified" checked><br>
+Did you modify the scoreboard to reflect your progress? Yes!<input type="radio" name="modify" value="modify"> No<input type="radio" name="modify" value="unmodified" checked><br><br>
 <br>
 With ?X? weeks left to "?this needs to be specified goal?" I'm feeling ... <br>
 <!-- I need to learn how to extract and manipulate data from mysql the ?X? would pull from mysql how many weeks remaining -->
