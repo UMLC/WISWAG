@@ -44,7 +44,11 @@ This WIS focus will last <input type="number" maxlength="2" size="3" id="wis_len
     var selector = document.getElementById("dateselect");
     function getMondays(){
         var date = new Date();
-        var day = date.getDay();
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        var day = date.getDate();
+        date = new Date(year, month, day);
+        var weekDay = date.getDay();
         var daysLeft = {
             0: 1,
             1: 7,
@@ -54,14 +58,13 @@ This WIS focus will last <input type="number" maxlength="2" size="3" id="wis_len
             5: 3,
             6: 2
         };
-        var realDaysLeft = daysLeft[day];
-        var utcDate = Date.now();
+        var realDaysLeft = daysLeft[weekDay];
         var milsToAdd = realDaysLeft * 24 * 60 * 60 * 1000;
-        var UTCdateOfNextMonday = utcDate + milsToAdd;
+        var dateOfNextMonday = date.getTime() + milsToAdd;
         var sevenDays = 7 * 24 * 60 * 60 * 1000;
         var mondays = [];
         for(var i = 0; i < 25; i++){
-            mondays.push(UTCdateOfNextMonday + (sevenDays * i));
+            mondays.push(dateOfNextMonday + (sevenDays * i));
         }
         return mondays;
     }
