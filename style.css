@@ -1,0 +1,11 @@
+* {
+    font-family: sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+form > label, form > input, form > select, form > textarea {
+    display: block;
+}
+input[type=number] {
+    width: 2.5em;
+}
