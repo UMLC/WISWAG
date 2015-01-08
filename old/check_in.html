@@ -11,10 +11,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>From Yesterday</div>
-        <div>For Today</div>
+        <form>
+        <div>From Yesterday</div><br>
+    Task:  <input type="radio" name="task1" value="complete"> Completed <input type="radio" name="task1" value="forward"> Forward <input type="radio" name="task1" value="delete"> Forward 
+        <!--SELECT task1 from previous work day and echo / radio button response forward should insert into task1 of current day, or designate task1 in db as delete or complete.
+        The idea is at the end of a month a list of deleted and completed tasks could be echoed to evaluate planning ability. -->
+        <div>Today's Tasks</div>
+    Task 1: <input type="text" size="100" name="task1"> Need Help <input type="radio" name="support1" value="yes"> Yes <input type="radio" name="support1" value="no"> No<br><br>
+    Task 2: <input type="text" size="100" name="task2"> Need Help <input type="radio" name="support2" value="yes"> Yes <input type="radio" name="support2" value="no"> No<br><br>
+    Task 3: <input type="text" size="100" name="task3"> Need Help <input type="radio" name="support3" value="yes"> Yes <input type="radio" name="support3" value="no"> No<br>
+    
         <div>From Others</div>
 
+        </form>
 
     </body>
 </html>
