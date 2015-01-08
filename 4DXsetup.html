@@ -99,7 +99,8 @@ Who is responsible for the scoreboard? <input type="text" name="sbrperson"><br>
 <!--insert $sbcompleted in Table wis (date) Due date would also come up in responsible person's WAG form
 $sbrperson WAG form with a radio button choice of incomplete / complete until it is complete. 
 If not complete at due date I would really like an Email sent to me.-->
-When will the scoreboard be completed? <input type="date" placeholder="YYYY-MM-DD" size="10" name="sbcompleted"><br>
+How many days will it take to complete the scoreboard? <input type="number" size="2" name="sbcompleted"><br>
+<label><input type="checkbox" name="refpoint"> From start of WIS</label><label><input type="checkbox" name="refpoint"> From today</label>
 
 <!--Not sure if this code is right or not - just want an easy way to go to the scoreboard page if necessary.-->
 <a href="scoreboard.html"><button type="button">Link to Scoreboard</button></a>
@@ -114,13 +115,6 @@ Is the Weekly Action Goal Form ready?<input type="radio" name="WAGready" value="
 <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
 
 <!--insert $start in table WIS (date)-->
-What is the Monday of the week WAGs will start? 
-<input type="text" placeholder="YYYY-MM-DD" size="10" name="start"><br><br>
-Looking ahead the next 12-16 weeks, are there any weeks 4DX will not be executed?<br>
-If yes, write the Monday date(s) in the following blanks.<br>
-
-<input type="date" placeholder="YYYY-MM-DD, YYYY-MM-DD, YYYY-MM-DD" size="100" name="skip">
-<br><br>
 <!--insert $summative in table WIS (textarea 300)-->
 Describe the summative assessment process.<br>
 <textarea maxlength="300" name="summative" rows="3" cols="100">
