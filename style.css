@@ -5,6 +5,7 @@
 }
 form > label, form > input, form > select, form > textarea {
     display: block;
+    margin-bottom: 1em;
 }
 input[type=number] {
     width: 2.5em;

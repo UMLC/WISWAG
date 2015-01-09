@@ -45,29 +45,20 @@
             <!--This WIS statement is the most general statement and applies to everyone.-->
             <!--I would like to have this statement appear on the top of the WAGWAM form-->
             <!--insert $statement in table WIS (text 100)-->
-            <label>What is the simple, short, and general Wildly Important Standard?</label>
-
-            <!--
-            
-            1. get the number of completed wis weeks
-            2. if the wis isn't over (weeks haven;t been completed)
-            3. edit last wis
-            4. If the previous wis was completed, create new wis
-            
-            -->
-            <textarea cols=100 rows="3" name="statement"><?php echo $vals["statement"]; ?></textarea>
+            <label><div>What is the simple, short, and general Wildly Important Standard?</div>
+                <textarea cols=100 rows="3" name="statement"><?php echo $vals["statement"]; ?></textarea></label>
             <!--This is only for informational purposes. There are no plans at this point for printing.-->
             <!--insert $explanation into table WIS (textarea 255)-->
-            <label>Is there any explanation needed to better understand the WIS?</label>
-            <textarea cols="100" rows="3" name="explanation"><?php echo $vals["explanation"]; ?></textarea>
+            <label><div>Is there any explanation needed to better understand the WIS?</div>
+                <textarea cols="100" rows="3" name="explanation"><?php echo $vals["explanation"]; ?></textarea></label>
             <label>What is the short, and quantifiable WIS for each age level? (must include a number)</label>
-            <label>Level 1: <input type="text" maxlength="140" size="100" name="wisl1" value="<?php echo $vals["wisl1"]; ?>"> (youngest)</label><br><br>
-            <label>Level 2: <input type="text" maxlength="140" size="100" name="wisl2" value="<?php echo $vals["wisl2"]; ?>"></label><br><br>
-            <label>Level 3: <input type="text" maxlength="140" size="100" name="wisl3" value="<?php echo $vals["wisl3"]; ?>"></label><br><br>
-            <label>Level 4: <input type="text" maxlength="140" size="100" name="wisl4" value="<?php echo $vals["wisl4"]; ?>"> (oldest)</label><br><br>
+            <label>Level 1: <input type="text" maxlength="140" size="100" name="wisl1" value="<?php echo $vals["wisl1"]; ?>"> (youngest)</label>
+            <label>Level 2: <input type="text" maxlength="140" size="100" name="wisl2" value="<?php echo $vals["wisl2"]; ?>"></label>
+            <label>Level 3: <input type="text" maxlength="140" size="100" name="wisl3" value="<?php echo $vals["wisl3"]; ?>"></label>
+            <label>Level 4: <input type="text" maxlength="140" size="100" name="wisl4" value="<?php echo $vals["wisl4"]; ?>"> (oldest)</label>
             <label>This WIS focus will last <input type="number" maxlength="2" id="wis_length" value="<?php echo count($vals["dates"]); ?>"> weeks.</label>
-            <?php if(empty($_POST["new_wis"])){ ?>
-            <label><select id="dateselect" name="dates[]" size="20" multiple></select></label>
+            <?php if (!empty($_POST["new_wis"])) { ?>
+                <label><select id="dateselect" name="dates[]" size="20" multiple></select></label>
             <?php } ?>
             <h3>4DX Discipline Two - Scoreboard</h3>
 
@@ -80,10 +71,14 @@
                     $teachers = $teacher_data->fetch_all(MYSQLI_ASSOC);
                     foreach ($teachers as $teacher) {
                         ?>
-                        <option value="<?php echo $teacher["id"]; ?>" <?php if(intval($teacher["id"]) === intval($vals["sbrperson"])){ echo "selected"; } ?>><?php echo $teacher["name"]; ?></option>
-                        <?php
-                    }
-                    ?>
+                        <option value="<?php echo $teacher["id"]; ?>" <?php
+                        if (intval($teacher["id"]) === intval($vals["sbrperson"])) {
+                            echo "selected";
+                        }
+                        ?>><?php echo $teacher["name"]; ?></option>
+                                <?php
+                            }
+                            ?>
                 </select></label>
 
             <!--insert $sbcompleted in Table wis (date) Due date would also come up in responsible person's WAG form
@@ -109,7 +104,15 @@
             <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
             <label>Is the Weekly Action Goal Form ready?</label>
-            <label><input type="radio" name="wagformready" value="1" <?php if(intval($vals["wagformready"]) === 1){ echo "selected"; } ?>> Yes</label> <label><input type="radio" name="WAGready" value="0" <?php if(intval($vals["wagformready"]) === 0){ echo "selected"; } ?>> No</label>
+            <label><input type="radio" name="wagformready" value="1" <?php
+                if (intval($vals["wagformready"]) === 1) {
+                    echo "checked";
+                }
+                ?>> Yes <input type="radio" name="wagformready" value="0" <?php
+                          if (intval($vals["wagformready"]) === 0) {
+                              echo "checked";
+                          }
+                          ?>> No</label>
 
             <!--This is just a link to go look at the WAGWAS page if needed.-->
             <a href="WAGWAM.html"><button type="button">Link to WAG Form</button></a>
@@ -118,14 +121,14 @@
 
             <!--insert $start in table WIS (date)-->
             <!--insert $summative in table WIS (textarea 300)-->
-            <label>Describe the formative assessment process.</label>
-            <textarea maxlength="300" name="formative" rows="3" cols="100" placeholder="Enter evaluation process here..."><?php echo $vals["formative"]; ?></textarea>
-            <label>Describe the summative assessment process.</label>
-            <textarea maxlength="300" name="summative" rows="3" cols="100" placeholder="Enter evaluation process here..."><?php echo $vals["summative"]; ?></textarea>
+            <label><div>Describe the formative assessment process.</div>
+            <textarea maxlength="300" name="formative" rows="3" cols="100" placeholder="Enter evaluation process here..."><?php echo $vals["formative"]; ?></textarea></label>
+            <label><div>Describe the summative assessment process.</div>
+            <textarea maxlength="300" name="summative" rows="3" cols="100" placeholder="Enter evaluation process here..."><?php echo $vals["summative"]; ?></textarea></label>
             <!--insert $notes in Table WIS (textarea 300)-->
-            <br><label>Is there any other information that would be good to capture at this time that might be important for understanding, developing or evaluating this WIS?</label> 
-            <textarea maxlength="300" name="notes" rows="3" cols="100" placeholder="Enter your information here..."><?php echo $vals["notes"]; ?></textarea>
-            <br><input type="Submit" value="I'm Done!">
+            <label><div>Is there any other information that would be good to capture at this time that might be important for understanding, developing or evaluating this WIS?</div> 
+            <textarea maxlength="300" name="notes" rows="3" cols="100" placeholder="Enter your information here..."><?php echo $vals["notes"]; ?></textarea></label>
+            <input type="Submit" value="I'm Done!">
         </form>
         <script>
             var selector = document.getElementById("dateselect");
