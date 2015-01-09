@@ -16,7 +16,7 @@
             "wisl2" => "",
             "wisl3" => "",
             "wisl4" => "",
-            "dates" => "",
+            "dates" => [""],
             "sbrperson" => "0",
             "sbcompleted" => "",
             "wagformready" => "0",
@@ -55,25 +55,29 @@
             <label>Level 3: <input type="text" maxlength="140" size="100" name="wisl3" value="<?php echo $vals["wisl3"]; ?>"></label>
             <label>Level 4: <input type="text" maxlength="140" size="100" name="wisl4" value="<?php echo $vals["wisl4"]; ?>"> (oldest)</label>
             <label>This WIS focus will last <input type="number" maxlength="2" id="wis_length" value="<?php echo count($vals["dates"]); ?>"> weeks.</label>
-            <?php if (!empty($_POST["new_wis"])) { ?>
-                <label>
-                    <select id="dateselect" name="dates[]" size="20" multiple>
-                        <?php
-                        $today = new DateTime();
-                        $today->setTimezone(new DateTimeZone('Asia/Chongqing'));
-                        while ($today->format("D") !== "Mon") {
-                            $today->add(new DateInterval("P1D"));
-                        }
-                        for ($i = 0; $i < 25; $i++) {
-                            $today->add(new DateInterval("P" . $i * 7 . "D"));
-                            ?>
-                            <option value="<?php echo $today->format("Y-m-d"); ?>"<?php echo ($i < 12) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
-                            <?php
-                        }
+            <label>
+                <select id="dateselect" name="dates[]" size="20" multiple>
+                    <?php
+                    $today = new DateTime();
+                    $today->setTimezone(new DateTimeZone('Asia/Chongqing'));
+                    while ($today->format("D") !== "Mon") {
+                        $today->add(new DateInterval("P1D"));
+                    }
+                    if(!empty($vals["dates"][0])){
+                        // set $today = $vals["dates"][0]
+                        echo $vals["dates"][0];
+                        $today = DateTime::createFromFormat('Y-m-d', $vals["dates"][0], new DateTimeZone('Asia/Chongqing'));
+                    }
+                    $today->sub(new DateInterval("P7D"));
+                    for ($i = 0; $i < 25; $i++) {
+                        $today->add(new DateInterval("P7D"));
                         ?>
-                    </select>
-                </label>
-            <?php } ?>
+                        <option value="<?php $sqldate = $today->format("Y-m-d"); echo $sqldate; ?>"<?php echo in_array($sqldate, $vals["dates"]) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </label>
             <h3>4DX Discipline Two - Scoreboard</h3>
             <label>Who is responsible for the scoreboard? <select name="sbrperson">
                     <option value="0">-- Choose --</option>
@@ -93,7 +97,7 @@
                 </select></label>
             <label>When will the scoreboard be completed? <select id="weekday">
                     <?php
-                    // write php to get weekday and weeks from now from $vals["sbcompleted"]
+                    // write php to get weekday and weeks-from-now using $vals["sbcompleted"]
                     ?>
                     <option value="0">Sunday</option>
                     <option value="1">Monday</option>
