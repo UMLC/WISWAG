@@ -22,16 +22,16 @@
             4. If the previous wis was completed, create new wis
             
             -->
-            <textarea name="statement"></textarea>
+            <textarea cols=100 rows="3" name="statement"></textarea>
             <!--This is only for informational purposes. There are no plans at this point for printing.-->
             <!--insert $explanation into table WIS (textarea 255)-->
             <label>Is there any explanation needed to better understand the WIS?</label>
-            <textarea name="explanation"></textarea>
+            <textarea cols="100" rows="3" name="explanation"></textarea>
             <label>What is the short, and quantifiable WIS for each age level? (must include a number)</label>
-            <label>Level 1: <input type="text" maxlength="140" size="140" name="WISL1"> (youngest)</label>
-            <label>Level 2: <input type="text" maxlength="140" size="140" name="WISL2"></label>
-            <label>Level 3: <input type="text" maxlength="140" size="140" name="WISL3"></label>
-            <label>Level 4: <input type="text" maxlength="140" size="140" name="WISL4"> (oldest)</label>
+            <label>Level 1: <input type="text" maxlength="140" size="100" name="WISL1"> (youngest)</label><br><br>
+            <label>Level 2: <input type="text" maxlength="140" size="100" name="WISL2"></label><br><br>
+            <label>Level 3: <input type="text" maxlength="140" size="100" name="WISL3"></label><br><br>
+            <label>Level 4: <input type="text" maxlength="140" size="100" name="WISL4"> (oldest)</label><br><br>
             <label>This WIS focus will last <input type="number" maxlength="2" id="wis_length" name="length" value="12"> weeks.</label>
             <label><select id="dateselect" size="20" multiple></select></label>
             <h3>4DX Discipline Two - Scoreboard</h3>
@@ -70,8 +70,7 @@
             <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
             <label>Is the Weekly Action Goal Form ready?</label>
-            <label><input type="radio" name="WAGready" value="yes"> Yes</label>
-            <label><input type="radio" name="WAGready" value="no"> No</label>
+            <label><input type="radio" name="WAGready" value="yes"> Yes</label> <label><input type="radio" name="WAGready" value="no"> No</label>
 
             <!--This is just a link to go look at the WAGWAS page if needed.-->
             <a href="WAGWAM.html"><button type="button">Link to WAG Form</button></a>
@@ -83,9 +82,9 @@
             <label>Describe the summative assessment process.</label>
             <textarea maxlength="300" name="summative" rows="3" cols="100" placeholder="Enter evaluation process here..."></textarea>
             <!--insert $notes in Table WIS (textarea 300)-->
-            <label>Is there any other information that would be good to capture at this time that might be important for understanding, developing or evaluating this WIS?</label> 
+            <br><label>Is there any other information that would be good to capture at this time that might be important for understanding, developing or evaluating this WIS?</label> 
             <textarea maxlength="300" name="notes" rows="3" cols="100" placeholder="Enter your information here..."></textarea>
-            <input type="Submit" value="I'm Done!">
+            <br><input type="Submit" value="I'm Done!">
         </form>
         <script>
             var selector = document.getElementById("dateselect");
