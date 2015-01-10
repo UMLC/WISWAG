@@ -63,7 +63,7 @@
                     while ($today->format("D") !== "Mon") {
                         $today->add(new DateInterval("P1D"));
                     }
-                    if(!empty($vals["dates"][0])){
+                    if (!empty($vals["dates"][0])) {
                         // set $today = $vals["dates"][0]
                         echo $vals["dates"][0];
                         $today = DateTime::createFromFormat('Y-m-d', $vals["dates"][0], new DateTimeZone('Asia/Chongqing'));
@@ -72,7 +72,8 @@
                     for ($i = 0; $i < 25; $i++) {
                         $today->add(new DateInterval("P7D"));
                         ?>
-                        <option value="<?php $sqldate = $today->format("Y-m-d"); echo $sqldate; ?>"<?php echo in_array($sqldate, $vals["dates"]) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
+                        <option value="<?php $sqldate = $today->format("Y-m-d");
+                    echo $sqldate; ?>"<?php echo in_array($sqldate, $vals["dates"]) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
                         <?php
                     }
                     ?>
@@ -95,10 +96,13 @@
                             }
                             ?>
                 </select></label>
+            <?php
+            // write php to get weekday and weeks-from-now using $vals["sbcompleted"]
+            $sbdate = DateTime::createFromFormat("Y-m-d", $vals["sbcompleted"], new DateTimeZone("Asia/Chongqing"));
+            $weekday = intval($sbdate->format("N")) - 1;
+            // get weeks-from-now using DateTime->diff(DateTime)
+            ?>
             <label>When will the scoreboard be completed? <select id="weekday">
-                    <?php
-                    // write php to get weekday and weeks-from-now using $vals["sbcompleted"]
-                    ?>
                     <option value="0">Sunday</option>
                     <option value="1">Monday</option>
                     <option value="2">Tuesday</option>
