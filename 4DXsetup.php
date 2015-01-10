@@ -72,11 +72,13 @@
                     for ($i = 0; $i < 25; $i++) {
                         $today->add(new DateInterval("P7D"));
                         ?>
-                        <option value="<?php $sqldate = $today->format("Y-m-d");
-                    echo $sqldate; ?>"<?php echo in_array($sqldate, $vals["dates"]) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
-                        <?php
-                    }
-                    ?>
+                        <option value="<?php
+                        $sqldate = $today->format("Y-m-d");
+                        echo $sqldate;
+                        ?>"<?php echo in_array($sqldate, $vals["dates"]) ? " selected" : ""; ?>><?php echo $today->format("D, d M Y"); ?></option>
+                                <?php
+                            }
+                            ?>
                 </select>
             </label>
             <h3>4DX Discipline Two - Scoreboard</h3>
@@ -98,19 +100,57 @@
                 </select></label>
             <?php
             // write php to get weekday and weeks-from-now using $vals["sbcompleted"]
-            $sbdate = DateTime::createFromFormat("Y-m-d", $vals["sbcompleted"], new DateTimeZone("Asia/Chongqing"));
-            $weekday = intval($sbdate->format("N")) - 1;
-            // get weeks-from-now using DateTime->diff(DateTime)
+            $tz = new DateTimeZone("Asia/Chongqing");
+            $sbdate = DateTime::createFromFormat("Y-m-d", $vals["sbcompleted"], $tz);
+            $weekday = intval($sbdate->format("N")) % 7;
+
+            //get week number by counting how many times we can subtract 7 days before we get a date from last year
+            function precedingSunday($date) {
+                $oneDay = new DateInterval("P1D");
+                while ($date->format("l") !== "Sunday") {
+                    $date->sub($oneDay);
+                }
+                return $date;
+            }
+
+            function weekNumber($date) {
+                $oneWeek = new DateInterval("P7D");
+                $year = $date->format("Y");
+                $i = 0;
+                $date = precedingSunday($date);
+                while ($date->format("Y") == $year) {
+                    $date->sub($oneWeek);
+                    $i++;
+                }
+                return $i;
+            }
+
+            $today = new DateTime("now", $tz);
+            $diff = weekNumber($sbdate) - weekNumber($today);
             ?>
             <label>When will the scoreboard be completed? <select id="weekday">
-                    <option value="0">Sunday</option>
-                    <option value="1">Monday</option>
-                    <option value="2">Tuesday</option>
-                    <option value="3">Wednesday</option>
-                    <option value="4">Thursday</option>
-                    <option value="5">Friday</option>
-                    <option value="6">Saturday</option>
-                </select>, <input id="weeks_from_now" type="number" value="1"> week(s) from now.</label>
+                    <option value="0"<?php if ($weekday === 0) {
+                echo " selected";
+            } ?>>Sunday</option>
+                    <option value="1"<?php if ($weekday === 1) {
+                echo " selected";
+            } ?>>Monday</option>
+                    <option value="2"<?php if ($weekday === 2) {
+                echo " selected";
+            } ?>>Tuesday</option>
+                    <option value="3"<?php if ($weekday === 3) {
+                echo " selected";
+            } ?>>Wednesday</option>
+                    <option value="4"<?php if ($weekday === 4) {
+                echo " selected";
+            } ?>>Thursday</option>
+                    <option value="5"<?php if ($weekday === 5) {
+                echo " selected";
+            } ?>>Friday</option>
+                    <option value="6"<?php if ($weekday === 6) {
+                    echo " selected";
+                } ?>>Saturday</option>
+                </select>, <input id="weeks_from_now" type="number" value="<?php echo $diff; ?>"> week(s) from now.</label>
             <label><span id="days_date"></span><input name="sbcompleted" type="hidden"></label>
             <a href="scoreboard.html"><button type="button">Link to Scoreboard</button></a>
 
@@ -118,14 +158,14 @@
 
             <label>Is the Weekly Action Goal Form ready?</label>
             <label><input type="radio" name="wagformready" value="1" <?php
-                if (intval($vals["wagformready"]) === 1) {
-                    echo "checked";
-                }
-                ?>> Yes <input type="radio" name="wagformready" value="0" <?php
+                          if (intval($vals["wagformready"]) === 1) {
+                              echo "checked";
+                          }
+            ?>> Yes <input type="radio" name="wagformready" value="0" <?php
                           if (intval($vals["wagformready"]) === 0) {
                               echo "checked";
                           }
-                          ?>> No</label>
+            ?>> No</label>
             <a href="WAGWAM.html"><button type="button">Link to WAG Form</button></a>
             <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
             <label><div>Describe the formative assessment process.</div>
@@ -138,6 +178,11 @@
         </form>
         <script>
             var selector = document.getElementById("dateselect");
+            function setTimezone(date, timezone) {
+                var offset = (new Date().getTimezoneOffset() / 60) * -1;
+                date.setHours(date.getHours() - offset + timezone);
+                return date;
+            }
             function setWisLength() {
                 var wisLengthBox = document.getElementById("wis_length");
                 wisLengthBox.value = selector.selectedOptions.length;
@@ -150,6 +195,7 @@
                 var weekday = document.getElementById("weekday").selectedOptions[0].value;
                 var weeks = document.getElementById("weeks_from_now").value;
                 var date1 = new Date();
+                date1 = setTimezone(date1, 8);
                 date1.setHours(0, 0, 0, 0);
                 var date = new Date(date1.getTime());
                 var nth = date.getDate();
