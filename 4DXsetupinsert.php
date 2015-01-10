@@ -10,23 +10,17 @@
         }
     }
 
-    /*
-     * statement
-     * explanation
-     * wisl1
-     * wisl2
-     * wisl3
-     * wisl4
-     * dates
-     * sbrperson
-     * sbcompleted
-     * wagformready
-     * formative
-     * summative
-     * notes
-
-      $DB->query($query);
-      $DB->close();
-     * 
-     */
-    ?>
+    //if $_POST["wisid"] === "new"
+    if($_POST["wisid"] === "new"){
+        //INSERT ...
+        $DB->query("INSERT INTO wis(id) VALUES('')");
+        $_POST["wisid"] = $DB->insert_id;
+    }
+    // UPDATE ... WHERE id='$_POST["wisid"]'
+    $wisid = array_shift($_POST);
+    foreach($_POST as $key => $value){
+        $DB->query("UPDATE wis SET " . $key . " = '" . $value . "' WHERE id = '" . $wisid . "'");
+    }
+    
+    $DB->close();
+    header("Location: http://www.umlc.org/data/4DXsetup.php");

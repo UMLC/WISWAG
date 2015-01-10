@@ -9,6 +9,8 @@
     <body>
         <?php
         require_once 'UMLCdatalogin.php';
+        $defaultsbcomplete = new DateTime("now", new DateTimeZone("Asia/Chongqing"));
+        $defaultsbcomplete->add(new DateInterval("P7D"));
         $vals = [
             "statement" => "",
             "explanation" => "",
@@ -18,16 +20,18 @@
             "wisl4" => "",
             "dates" => [""],
             "sbrperson" => "0",
-            "sbcompleted" => "",
+            "sbcompleted" => $defaultsbcomplete->format("Y-m-d"),
             "wagformready" => "0",
             "formative" => "",
             "summative" => "",
             "notes" => ""
         ];
+        $wisid = "new";
         if (empty($_POST["new_wis"])) {
             // get latest WIS info from database to fill fields
             $wis = $DB->query("SELECT * FROM wis ORDER BY id DESC LIMIT 1");
             $wis = $wis->fetch_all(MYSQLI_ASSOC)[0];
+            $wisid = $wis["id"];
             foreach ($vals as $key => $value) {
                 $vals[$key] = $wis[$key];
             }
@@ -40,6 +44,7 @@
         }
         ?>
         <form method="post" action="4DXsetupinsert.php">
+            <input type="hidden" name="wisid" value="<?php echo $wisid; ?>">
             <h3>4DX Discipline One - Wildly Important Standard (WIS)</h3>
             <label>
                 <div>What is the simple, short, and general Wildly Important Standard?</div>
