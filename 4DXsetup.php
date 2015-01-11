@@ -157,7 +157,7 @@
                 } ?>>Saturday</option>
                 </select>, <input id="weeks_from_now" type="number" value="<?php echo $diff; ?>"> week(s) from now.</label>
             <label><span id="days_date"></span><input name="sbcompleted" type="hidden"></label>
-            <a href="scoreboard.html"><button type="button">Link to Scoreboard</button></a>
+            <a href="scoreboard.php"><button type="button">Link to Scoreboard</button></a>
 
             <h3>4DX Discipline Three - Weekly Action Goal (WAG)</h3>
 
@@ -171,7 +171,7 @@
                               echo "checked";
                           }
             ?>> No</label>
-            <a href="WAGWAM.html"><button type="button">Link to WAG Form</button></a>
+            <a href="WAGWAM.php"><button type="button">Link to WAG Form</button></a>
             <h3>4DX Discipline Four - Weekly Accountability Meetings (WAM)</h3>
             <label><div>Describe the formative assessment process.</div>
                 <textarea maxlength="300" name="formative" rows="3" cols="100" placeholder="Enter evaluation process here..."><?php echo $vals["formative"]; ?></textarea></label>
