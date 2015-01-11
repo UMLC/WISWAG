@@ -66,7 +66,10 @@
                     <?php } ?>
                     <?php if (($week + 1) === $number_of_weeks) { ?>
                         <!-- Appears last week --><label>I attained our wildly important standard: <input type="radio" name="wis_met" value="1">Yes!<input type="radio" name="wis_met" value="0" checked>No</label>
-                    <?php } ?>
+                    <?php }
+                    // get wag_action(s) for previous WAG
+                    // loop through and show evidence/improve for each
+                    ?>
                     <!-- Repeat following two fields for each action (1-3) giving action 'what' from wag_action -->
                     <label>Give Evidence that WAG leveraged WIS:</label><label><textarea name="evidence"></textarea></label>
                     <label>How could WAG have been better?</label><label><textarea name="improve"></textarea></label>
