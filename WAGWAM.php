@@ -33,16 +33,18 @@
                 $week++;
             }
             $date = DateTime::createFromFormat("Y-m-d", $dates[$week], $tz);
-            //get latest wag for wis from teacher
-            $res = $DB->query("SELECT * FROM wagwam WHERE wis = '" . $wis["id"] . "' AND teacher = '" . $teacher_id . "' ORDER BY id DESC LIMIT 1");
-            $lastwag = $res->fetch_all(MYSQLI_ASSOC)[0];
-            // which week is lastwag for?
+            //get wag for last week and wag for this week
+            /*
+              $res = $DB->query("SELECT * FROM wagwam WHERE wis = '" . $wis["id"] . "' AND teacher = '" . $teacher_id . "' ORDER BY id DESC LIMIT 1");
+              $lastwag = $res->fetch_all(MYSQLI_ASSOC)[0];
+             */
             $res = $DB->query("SELECT * FROM class WHERE id = '" . $lastwag["class"] . "' LIMIT 1");
             $class = $res->fetch_all(MYSQLI_ASSOC)[0];
             $res = $DB->query("SELECT c.id, c.name FROM teacher_class tc JOIN class c ON(tc.class = c.id) WHERE tc.teacher = '" . $teacher_id . "'");
             $teacher_classes = $res->fetch_all(MYSQLI_ASSOC);
             ?>
             <form action="WAGWAMinsert.php" method="post">
+                <input name="teacher" value="<?php echo $teacher_id; ?>">
                 <h1><?php echo $wis["statement"]; ?></h1>
                 <h2>4DX Weekly Action Goal (WAG)</h2>
                 <h3>Week <?php echo $week + 1; ?> of <?php echo $number_of_weeks; ?> weeks</h3>
@@ -65,15 +67,21 @@
                         </label>
                     <?php } ?>
                     <?php if (($week + 1) === $number_of_weeks) { ?>
-                        <!-- Appears last week --><label>I attained our wildly important standard: <input type="radio" name="wis_met" value="1">Yes!<input type="radio" name="wis_met" value="0" checked>No</label>
-                    <?php }
+                        <!-- Appears on last week --><label>I attained our wildly important standard: <input type="radio" name="wis_met" value="1">Yes!<input type="radio" name="wis_met" value="0" checked>No</label>
+                    <?php
+                    }
                     // get wag_action(s) for previous WAG
+                    $res = $DB->query("SELECT * FROM wag_action WHERE wagwam = '" . $lastwag["id"] . "'");
+                    $wagactions = $res->fetch_all(MYSQLI_ASSOC);
                     // loop through and show evidence/improve for each
-                    ?>
-                    <!-- Repeat following two fields for each action (1-3) giving action 'what' from wag_action -->
-                    <label>Give Evidence that WAG leveraged WIS:</label><label><textarea name="evidence"></textarea></label>
-                    <label>How could WAG have been better?</label><label><textarea name="improve"></textarea></label>
-                <?php
+                    foreach ($wagactions as $action) {
+                        ?>
+                        <!-- Repeat following two fields for each action (1-3) giving action 'what' from wag_action -->
+                        <h5>For action: "<?php echo $action["what"]; ?>"</h5>
+                        <label>Give Evidence that WAG leveraged WIS:</label><label><textarea name="action<?php echo $action["id"]; ?>evidence"></textarea></label>
+                        <label>How could WAG have been better?</label><label><textarea name="action<?php echo $action["id"]; ?>improve"></textarea></label>
+                        <?php
+                    }
                 }
                 if ($week + 1 < $number_of_weeks) {
                     ?>
@@ -89,40 +97,40 @@
                                 <option value="0">-- Choose One --</option>
                                 <?php foreach ($teacher_classes as $class) { ?>
                                     <option value="<?php echo $class["id"]; ?>"><?php echo $class["name"]; ?></option>
-                        <?php } ?>
+            <?php } ?>
                             </select>
                         </label>
                     <?php } else {
                         ?><input type="hidden" name="class" value="<?php echo $teacher_classes[0]["id"]; ?>"><?php }
-                    ?>
+        ?>
                     <task>
                         <label>Describe the action:</label>
-                        <label><textarea name="what"></textarea></label>
+                        <label><textarea name="action1what"></textarea></label>
                         <label>Before ..., during ..., after ...:</label>
-                        <label><textarea name="when"></textarea></label>
+                        <label><textarea name="action1when"></textarea></label>
                         <label>Where will the action take place?</label>
-                        <label><textarea name="location"></textarea></label>
-                        <label>This action will take place <input type="number" min="1" max="99" name="perday"> times per day, and <input type="number" min="1" max="6" name="perweek"> days per week.</label>
+                        <label><textarea name="action1location"></textarea></label>
+                        <label>This action will take place <input type="number" min="1" max="99" name="action1perday"> times per day, and <input type="number" min="1" max="6" name="action1perweek"> days per week.</label>
                     </task>
                     <label><button type="button" onclick="document.getElementById('two').style.display = 'block';">+ Action</button></label>
                     <task id="two">
                         <label>Describe the action:</label>
-                        <label><textarea name="what"></textarea></label>
+                        <label><textarea name="action2what"></textarea></label>
                         <label>Before ..., during ..., after ...:</label>
-                        <label><textarea name="when"></textarea></label>
+                        <label><textarea name="action2when"></textarea></label>
                         <label>Where will the action take place?</label>
-                        <label><textarea name="location"></textarea></label>
-                        <label>This action will take place <input type="number" min="1" max="99" name="perday"> times per day, and <input type="number" min="1" max="6" name="perweek"> days per week.</label>
+                        <label><textarea name="action2location"></textarea></label>
+                        <label>This action will take place <input type="number" min="1" max="99" name="action2perday"> times per day, and <input type="number" min="1" max="6" name="action2perweek"> days per week.</label>
                     </task>
                     <label><button type="button" onclick="document.getElementById('three').style.display = 'block';">+ Action</button></label>
                     <task id="three">
                         <label>Describe the action:</label>
-                        <label><textarea name="what"></textarea></label>
+                        <label><textarea name="action3what"></textarea></label>
                         <label>Before ..., during ..., after ...:</label>
-                        <label><textarea name="when"></textarea></label>
+                        <label><textarea name="action3when"></textarea></label>
                         <label>Where will the action take place?</label>
-                        <label><textarea name="location"></textarea></label>
-                        <label>This action will take place <input type="number" min="1" max="99" name="perday"> times per day, and <input type="number" min="1" max="6" name="perweek"> days per week.</label>
+                        <label><textarea name="action3location"></textarea></label>
+                        <label>This action will take place <input type="number" min="1" max="99" name="action3perday"> times per day, and <input type="number" min="1" max="6" name="action3perweek"> days per week.</label>
                         <!-- when wanting to deal with total times, SELECT (perday * perweek) AS times FROM wag_action -->
                     </task>
     <?php } ?>
