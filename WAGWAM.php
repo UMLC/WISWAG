@@ -34,10 +34,30 @@
             }
             $date = DateTime::createFromFormat("Y-m-d", $dates[$week], $tz);
             //get wag for last week and wag for this week
-            /*
-              $res = $DB->query("SELECT * FROM wagwam WHERE wis = '" . $wis["id"] . "' AND teacher = '" . $teacher_id . "' ORDER BY id DESC LIMIT 1");
-              $lastwag = $res->fetch_all(MYSQLI_ASSOC)[0];
-             */
+            $lastweek = DateTime::createFromFormat("Y-m-d", $dates[$week - 1]);
+            $thisweek = DateTime::createFromFormat("Y-m-d", $dates[$week]);
+            $lastweek->sub(new DateInterval("P4D"));
+            $lastweekstart = DateTime::createFromFormat("Y-m-d", $lastweek->format("Y-m-d"), $tz);
+            $lastweek->add(new DateInterval("P6D"));
+            $lastweekend = DateTime::createFromFormat("Y-m-d", $lastweek->format("Y-m-d"), $tz);
+            $thisweek->sub(new DateInterval("P4D"));
+            $thisweekstart = DateTime::createFromFormat("Y-m-d", $thisweek->format("Y-m-d"), $tz);
+            $thisweek->add(new DateInterval("P6D"));
+            $thisweekend = DateTime::createFromFormat("Y-m-d", $thisweek->format("Y-m-d"), $tz);
+            $sql = "SELECT * FROM wagwam WHERE teacher = '" . $teacher_id . "' AND date BETWEEN '" . $lastweekstart->format("Y-m-d") . "' AND '" . $lastweekend->format("Y-m-d") . "' ORDER BY id DESC LIMIT 1";
+            $res = $DB->query($sql);
+            if ($res->num_rows < 1) {
+                $lastwag = null;
+            } else {
+                $lastwag = $res->fetch_all(MYSQLI_ASSOC)[0];
+            }
+            $sql = "SELECT * FROM wagwam WHERE teacher = '" . $teacher_id . "' AND date BETWEEN '" . $thisweekstart->format("Y-m-d") . "' AND '" . $thisweekend->format("Y-m-d") . "' ORDER BY id DESC LIMIT 1";
+            $res = $DB->query($sql);
+            if ($res->num_rows < 1) {
+                $thiswag = null;
+            } else {
+                $thiswag = $res->fetch_all(MYSQLI_ASSOC)[0];
+            }
             $res = $DB->query("SELECT * FROM class WHERE id = '" . $lastwag["class"] . "' LIMIT 1");
             $class = $res->fetch_all(MYSQLI_ASSOC)[0];
             $res = $DB->query("SELECT c.id, c.name FROM teacher_class tc JOIN class c ON(tc.class = c.id) WHERE tc.teacher = '" . $teacher_id . "'");
@@ -48,13 +68,32 @@
                 <h1><?php echo $wis["statement"]; ?></h1>
                 <h2>4DX Weekly Action Goal (WAG)</h2>
                 <h3>Week <?php echo $week + 1; ?> of <?php echo $number_of_weeks; ?> weeks</h3>
-                <?php if ($week > 0) { ?>
+                <?php if ($lastwag) { ?>
                     <h4>Last Week:</h4>
-                    <label>Did you attend the Weekly Accountability Meeting (WAM)? <input type="radio" name="attend" value="1">Yes! <input type="radio" name="attend" value="0" checked>No</label>
-                    <label>Did you complete your WAG? <input type="radio" name="complete" value="1">Yes! <input type="radio" name="complete" value="0" checked>No</label>
-                    <label>Did you modify the scoreboard to reflect your progress? <input type="radio" name="modified_score" value="1">Yes!<input type="radio" name="modified_score" value="0" checked>No</label>
+                    <label>Did you attend the Weekly Accountability Meeting (WAM)? <input type="radio" name="attend" value="1"<?php if (intval($lastwag["attend"]) === 1) {
+                echo " checked";
+            } ?>>Yes! <input type="radio" name="attend" value="0"<?php if (intval($lastwag["attend"]) !== 1) {
+                echo " checked";
+            } ?>>No</label>
+                    <label>Did you complete your WAG? <input type="radio" name="complete" value="1"<?php if (intval($lastwag["complete"]) === 1) {
+                echo " checked";
+            } ?>>Yes! <input type="radio" name="complete" value="0"<?php if (intval($lastwag["complete"]) !== 1) {
+                echo " checked";
+            } ?>>No</label>
+                    <label>Did you modify the scoreboard to reflect your progress? <input type="radio" name="modified_score" value="1"<?php if (intval($lastwag["modified_score"]) === 1) {
+                echo " checked";
+            } ?>>Yes!<input type="radio" name="modified_score" value="0"<?php if (intval($lastwag["modified_score"]) !== 1) {
+                echo " checked";
+            } ?>>No</label>
+<?php                    
+/***************************************************************************************
+ * Here we will list the wag_action(s) and ask for 'evidence' and 'improve'
+ * for each one
+****************************************************************************************/
+?>
+                    
                     <!-- shown when week# is % 3 = 0, when week# < totalWeeks: -->
-                    <?php if (($week + 1) % 3 === 0 && ($week + 1) < $number_of_weeks) { ?>
+        <?php if (($week + 1) % 3 === 0 && ($week + 1) < $number_of_weeks) { ?>
                         <label>With <?php echo $number_of_weeks - $week - 1; ?> weeks left to "<?php echo $wis["wisl" . $class["level"]]; ?>" I'm feeling...</label>
                         <label>
                             <select name="emotion">
@@ -68,7 +107,7 @@
                     <?php } ?>
                     <?php if (($week + 1) === $number_of_weeks) { ?>
                         <!-- Appears on last week --><label>I attained our wildly important standard: <input type="radio" name="wis_met" value="1">Yes!<input type="radio" name="wis_met" value="0" checked>No</label>
-                    <?php
+                        <?php
                     }
                     // get wag_action(s) for previous WAG
                     $res = $DB->query("SELECT * FROM wag_action WHERE wagwam = '" . $lastwag["id"] . "'");
@@ -87,21 +126,21 @@
                     ?>
                     <!-- If week# !== totalWeeks -->
                     <h5>My WAG for <?php echo $date->format("Y.m.d"); ?> through <?php
-                        $friday = $date->add(new DateInterval("P5D"));
-                        echo $friday->format("Y.m.d");
-                        ?>:</h5>
+                    $friday = $date->add(new DateInterval("P5D"));
+                    echo $friday->format("Y.m.d");
+                    ?>:</h5>
                     <!-- If teacher is related to more than one class --><label>Which class will you be working with?</label>
-        <?php if (count($teacher_classes) > 1) { ?>
+                            <?php if (count($teacher_classes) > 1) { ?>
                         <label>
                             <select name="class">
                                 <option value="0">-- Choose One --</option>
-                                <?php foreach ($teacher_classes as $class) { ?>
+                        <?php foreach ($teacher_classes as $class) { ?>
                                     <option value="<?php echo $class["id"]; ?>"><?php echo $class["name"]; ?></option>
-            <?php } ?>
+                        <?php } ?>
                             </select>
                         </label>
-                    <?php } else {
-                        ?><input type="hidden" name="class" value="<?php echo $teacher_classes[0]["id"]; ?>"><?php }
+        <?php } else {
+            ?><input type="hidden" name="class" value="<?php echo $teacher_classes[0]["id"]; ?>"><?php }
         ?>
                     <task>
                         <label>Describe the action:</label>
@@ -133,7 +172,7 @@
                         <label>This action will take place <input type="number" min="1" max="99" name="action3perday"> times per day, and <input type="number" min="1" max="6" name="action3perweek"> days per week.</label>
                         <!-- when wanting to deal with total times, SELECT (perday * perweek) AS times FROM wag_action -->
                     </task>
-    <?php } ?>
+            <?php } ?>
                 <label>Comment:</label>
                 <label><textarea name="comment"></textarea></label>
                 <input type="Submit" value="Report">
