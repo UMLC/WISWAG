@@ -34,9 +34,3 @@ input[type=number] {
 textarea {
     width: 90%;
 }
-task {
-    display: none;
-}
-task:nth-of-type(1) {
-    display: block;
-}
