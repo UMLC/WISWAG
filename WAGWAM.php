@@ -55,8 +55,11 @@
             $res = $DB->query($sql);
             if ($res->num_rows < 1) {
                 $today = new DateTime("now", $tz);
-                $DB->query("INSERT INTO wagwam(date) VALUES('" . $today->format("Y-m-d") . "')");
+                $sql = "INSERT INTO wagwam(teacher, wis, date) VALUES('" . $teacher_id . "','" . $wis["id"] . "','" . $today->format("Y-m-d") . "')";
+                $DB->query($sql);
+                // needs to select between lastweekend + 1 and thisweekend
                 $sql = "SELECT * FROM wagwam WHERE teacher = '" . $teacher_id . "' AND date BETWEEN '" . $thisweekstart->format("Y-m-d") . "' AND '" . $thisweekend->format("Y-m-d") . "' ORDER BY id DESC LIMIT 1";
+                echo $sql;
                 $res = $DB->query($sql);
                 $thiswag = $res->fetch_all(MYSQLI_ASSOC)[0];
             } else {
