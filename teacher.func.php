@@ -1,7 +1,6 @@
 <?php
 
 function teacher_login() {
-    session_start();
     if (!teacher_is_logged_in()) {
         show_login_form();
     }
@@ -15,7 +14,7 @@ function show_login_form() {
 }
 
 function teacher_is_logged_in() {
-    if (!empty($_SESSION["loggedin"])) {
+    if (!empty($_SESSION["teacher_id"])) {
         return true;
     }
     if (!empty($_POST["teacherfullname"])) {
@@ -26,8 +25,9 @@ function teacher_is_logged_in() {
 
 function teacher_is_in_db($teacher) {
     global $DB;
-    if (count($DB->query("SELECT * FROM teacher WHERE name = '" . $teacher . "'")) > 0) {
-        $_SESSION["loggedin"] = true;
+    $teacher = $DB->query("SELECT * FROM teacher WHERE name = '" . $teacher . "'");
+    if (count($teacher) > 0) {
+        $_SESSION["teacher_id"] = $teacher[0]["id"];
         return true;
     }
 }
