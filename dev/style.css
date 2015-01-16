@@ -1,0 +1,36 @@
+* {
+    font-family: sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+h6 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 28px;
+}
+h2 {
+    font-size: 32px;
+}
+h1 {
+    font-size: 36px;
+}
+input, select, textarea, button {
+    margin-bottom: 1em;
+}
+label {
+    display: block;
+    margin-bottom: 0;
+}
+input[type=number] {
+    width: 2.5em;
+}
+textarea {
+    width: 90%;
+}

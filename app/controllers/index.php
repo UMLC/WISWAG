@@ -1,5 +1,0 @@
-<?php
-
-$controllers = [
-    "path" => "path"
-];
