@@ -4,10 +4,10 @@ class UMLC_WIS {
 
     private $tz = null;
 
-    public function __construct() {
+    public function __construct($id = 0) {
         $this->tz = new DateTimeZone('Asia/Chongqing');
         $DB = get_connection();
-        $data = $DB->query("SELECT * FROM wis ORDER BY id DESC LIMIT 1")[0];
+        $data = $DB->query("SELECT * FROM wis WHERE id = '" . $id . "'")[0];
         foreach ($data as $key => $value) {
             $this->$key = $value;
         }

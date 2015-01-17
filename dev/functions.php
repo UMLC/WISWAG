@@ -8,5 +8,5 @@ function get_connection() {
     return $DB;
 }
 
-require_once 'teacher.func.php';
-require_once 'wis.func.php';
+require_once 'functions/teacher.func.php';
+require_once 'functions/wis.func.php';
