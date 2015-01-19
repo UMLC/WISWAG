@@ -23,7 +23,7 @@ class UMLC_WIS {
         $last_week_end = clone $this->dates[0];
         $one_day = new DateInterval("P1D");
         $six_days = new DateInterval("P6D");
-        $last_week_end->sub($one_day);
+        $last_week_end->sub(new DateInterval("P4D"));
         foreach($this->dates as $i => $date){
             $this_week_start = clone $last_week_end;
             $this_week_start->add($one_day);
