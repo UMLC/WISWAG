@@ -24,7 +24,7 @@ class UMLC_WIS {
         $one_day = new DateInterval("P1D");
         $six_days = new DateInterval("P6D");
         $last_week_end->sub(new DateInterval("P4D"));
-        foreach($this->dates as $i => $date){
+        foreach ($this->dates as $i => $date) {
             $this_week_start = clone $last_week_end;
             $this_week_start->add($one_day);
             $this_week_end = clone $this_week_start;
@@ -38,15 +38,27 @@ class UMLC_WIS {
         }
         unset($this->dates);
     }
-    
-    public function week_number($date){
+
+    public function week_number($date) {
         $seconds = $date->format("U");
-        foreach($this->weeks as $week){
-            if($seconds >= $week["start"]->format("U") && $seconds <= $week["end"]->format("U")){
+        foreach ($this->weeks as $week) {
+            if ($seconds >= $week["start"]->format("U") && $seconds <= $week["end"]->format("U")) {
                 return $week["number"];
             }
         }
         return 0;
+    }
+
+    public function wag($teacher, $week_num = 1) {
+        $week = $this->weeks[$week_num - 1];
+        $DB = get_connection();
+        $wag_id = $DB->query("SELECT * FROM wagwam WHERE date BETWEEN '" . $week["start"]->format("Y-m-d") . "' AND '" . $week["end"]->format("Y-m-d") . "' AND teacher = '" . $teacher . "' ORDER BY id LIMIT 1")[0]["id"];
+        if (intval($wag_id) > 0) {
+            $wag = new UMLC_WAG($wag_id);
+            return $wag;
+        } else {
+            return 0;
+        }
     }
 
 }

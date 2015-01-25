@@ -1,7 +1,5 @@
 <?php
 
-require_once 'models/wis.class.php';
-
 function get_wis() {
     $db = get_connection();
     $wis_id = $db->query("SELECT * FROM wis WHERE convert_tz(curdate(), @@global.time_zone, 'Asia/Chongqing') BETWEEN SUBDATE(LEFT(dates, 10), INTERVAL 4 DAY) AND ADDDATE(RIGHT(dates, 10), INTERVAL 2 DAY) ORDER BY id LIMIT 1")[0]["id"];
