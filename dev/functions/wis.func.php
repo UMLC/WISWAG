@@ -12,3 +12,8 @@ function get_wis() {
         throw new Exception("No WIS is defined for the current time period.");
     }
 }
+
+function date_now(){
+    $tz = new DateTimeZone('Asia/Chongqing');
+    return new DateTime("now", $tz);
+}

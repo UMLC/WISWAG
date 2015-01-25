@@ -38,5 +38,15 @@ class UMLC_WIS {
         }
         unset($this->dates);
     }
+    
+    public function week_number($date){
+        $seconds = $date->format("U");
+        foreach($this->weeks as $week){
+            if($seconds >= $week["start"]->format("U") && $seconds <= $week["end"]->format("U")){
+                return $week["number"];
+            }
+        }
+        return 0;
+    }
 
 }

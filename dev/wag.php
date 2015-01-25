@@ -19,7 +19,8 @@
             teacher_login();
             if (!empty($_SESSION["teacher_id"])) {
                 $WIS = get_wis();
-                echo json_encode($WIS, JSON_PRETTY_PRINT);
+                $this_week = $WIS->week_number(date_now());
+                echo $this_week;
             }
             ?>
         </pre>
