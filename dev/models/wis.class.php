@@ -57,7 +57,7 @@ class UMLC_WIS {
             $wag = new UMLC_WAG($wag_id);
             return $wag;
         } else {
-            return 0;
+            return false;
         }
     }
 

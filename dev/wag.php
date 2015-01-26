@@ -18,9 +18,16 @@
 
             teacher_login();
             if (!empty($_SESSION["teacher_id"])) {
+                $teacher = $_SESSION["teacher_id"];
                 $WIS = get_wis();
-                $this_week = $WIS->week_number(date_now());
-                echo $this_week;
+                $week_number = $WIS->week_number(date_now());
+                $number_of_weeks = count($WIS->weeks);
+                $lastWAG = $WIS->wag($teacher, $week_number - 1);
+                if(empty($_POST)){
+                    show_form();
+                } else {
+                    process();
+                }
             }
             ?>
         </pre>
