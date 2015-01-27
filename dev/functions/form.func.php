@@ -4,8 +4,11 @@ function third_week_form(){
     $form = "";
     if($week_number % 3 === 0 && $week_number < $number_of_weeks) {
         $weeks_left = $number_of_weeks - $week_number;
+        $class = new UMLC_Class($lastWAG->class);
+        $level_var = "wisl" . $class->level;
+        $level_standard = $WIS->$level_var;
         $form .= <<<FORM
-                        <label>With $weeks_left weeks left to "<?php echo $wis["wisl" . $class["level"]]; ?>" I'm feeling...</label>
+                        <label>With $weeks_left weeks left to "$level_standard" I'm feeling...</label>
                         <label>
                             <select name="emotion">
                                 <option value="">-- Choose One --</option>
